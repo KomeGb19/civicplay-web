@@ -148,7 +148,7 @@ export function LandingExperience() {
       <div className="min-h-screen bg-[var(--color-navy)] text-[var(--color-cream)]">
         <Nav progress={0} onOpenMenu={() => setMenuOpen(true)} />
         <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
-        <main className="mx-auto max-w-3xl px-5 pb-24 pt-28">
+        {/* <main className="mx-auto max-w-3xl px-5 pb-24 pt-28">
           <p className="font-[family-name:var(--font-syne)] text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-green)]">
             Civic Play
           </p>
@@ -178,7 +178,7 @@ export function LandingExperience() {
               Contact
             </a>
           </div>
-        </main>
+        </main> */}
         <div className="relative min-h-[280px]">
           <EndFooter visible />
         </div>

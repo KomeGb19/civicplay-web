@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne, Cal_Sans } from "next/font/google";
+import { DM_Sans, Syne, Cal_Sans, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const syne = Syne({
   subsets: ["latin"],
@@ -60,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable} ${calSans.variable}`}>
+    <html lang="en" className={cn(syne.variable, dmSans.variable, calSans.variable, "font-sans", geist.variable)}>
       <body className="antialiased" style={{ fontFamily: "var(--font-cal), ui-sans-serif, system-ui" }}>
         {children}
       </body>
