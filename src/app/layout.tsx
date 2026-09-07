@@ -3,7 +3,7 @@ import { DM_Sans, Syne, Cal_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const syne = Syne({
   subsets: ["latin"],
@@ -24,8 +24,8 @@ const calSans = Cal_Sans({
   variable: "--font-cal",
   display: "swap",
   weight: ["400"],
+  adjustFontFallback: false,
 });
-
 
 export const metadata: Metadata = {
   title: "Civic Play — Nigeria’s Civic Education Quiz Game",
@@ -44,8 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Civic Play — Learn Civics. Play to Win.",
-    description:
-      "Nigeria’s civic education game for students & citizens.",
+    description: "Nigeria’s civic education game for students & citizens.",
   },
   keywords: [
     "civic education",
@@ -63,8 +62,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(syne.variable, dmSans.variable, calSans.variable, "font-sans", geist.variable)}>
-      <body className="antialiased" style={{ fontFamily: "var(--font-cal), ui-sans-serif, system-ui" }}>
+    <html
+      lang="en"
+      className={cn(
+        syne.variable,
+        dmSans.variable,
+        calSans.variable,
+        "font-sans",
+        geist.variable,
+      )}
+    >
+      <body
+        className="antialiased"
+        style={{ fontFamily: "var(--font-cal), ui-sans-serif, system-ui" }}
+      >
         {children}
       </body>
     </html>
