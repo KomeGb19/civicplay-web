@@ -7,8 +7,7 @@
 @theme {
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-dm), ui-sans-serif, system-ui, sans-serif;
-  --font-cal: var(--font-cal), ui-sans-serif, system-ui, sans-serif;
-
+  
   --color-navy: #0b1f3a;
   --color-navy-deep: #061426;
   --color-green: #2ee59d;

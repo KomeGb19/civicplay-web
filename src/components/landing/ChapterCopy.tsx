@@ -105,8 +105,8 @@ export function ChapterCopy({ active, progress }: ChapterCopyProps) {
                   tilt={10} // Reduced tilt for subtlety // Reduced depth
                   smoothing={0.14} // Adjusted smoothing
                   perspective={900}
-                  autoOrbit={false} // Disable auto-orbit for cleaner integration
-                  pointerTracking={false} // Disable pointer tracking to avoid conflict with page scroll
+                  autoOrbit={true} // Disable auto-orbit for cleaner integration
+                  pointerTracking={true} // Disable pointer tracking to avoid conflict with page scroll
                   className="w-full"
                   shadow
                 />
