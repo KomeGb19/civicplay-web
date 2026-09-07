@@ -2,7 +2,7 @@
 
 import { CHAPTERS, LINKS, type Chapter } from "@/lib/chapters";
 import { useMemo, useState, useEffect } from "react";
-import TextLoop from "@/components/TextLoop";
+import TextLoop, { TextLoopShape } from "@/components/TextLoop";
 import DepthText from "@/components/DepthText";
 
 type ChapterCopyProps = {
@@ -33,22 +33,22 @@ export function ChapterCopy({ active, progress }: ChapterCopyProps) {
 
   const [fontSize, setFontSize] = useState(46);
   const [ribbonWidth, setRibbonWidth] = useState(86);
-  const [shape, setShape] = useState("circle");
+  const [shape, setShape] = useState<TextLoopShape>("circle");
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       let newFontSize = 46;
       let newRibbonWidth = 86;
-      let newShape = "circle";
+      let newShape: TextLoopShape = "circle";
       if (width < 640) {
         newFontSize = Math.round(46 * 1.4); // 64.4 -> 64
         newRibbonWidth = Math.round(86 * 1.4); // 120.4 -> 120
-        newShape = "wave";
+        newShape = "wave" as TextLoopShape;
       } else if (width < 1024) {
         newFontSize = Math.round(46 * 1.2); // 55.2 -> 55
         newRibbonWidth = Math.round(86 * 1.2); // 103.2 -> 103
-        newShape = "wave";
+        newShape = "wave" as TextLoopShape;
       }
       setFontSize(newFontSize);
       setRibbonWidth(newRibbonWidth);
@@ -105,8 +105,8 @@ export function ChapterCopy({ active, progress }: ChapterCopyProps) {
                   tilt={10} // Reduced tilt for subtlety // Reduced depth
                   smoothing={0.14} // Adjusted smoothing
                   perspective={900}
-                  autoOrbit={true} // Disable auto-orbit for cleaner integration
-                  pointerTracking={true} // Disable pointer tracking to avoid conflict with page scroll
+                  autoOrbit={false} // Disable auto-orbit for cleaner integration
+                  pointerTracking={false} // Disable pointer tracking to avoid conflict with page scroll
                   className="w-full"
                   shadow
                 />
