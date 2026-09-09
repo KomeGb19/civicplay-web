@@ -7,7 +7,6 @@
 @theme {
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-dm), ui-sans-serif, system-ui, sans-serif;
-  --font-cal: var(--font-cal), ui-sans-serif, system-ui, sans-serif;
 
   --color-navy: #0b1f3a;
   --color-navy-deep: #061426;
@@ -91,6 +90,10 @@
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+* {
+  cursor: none !important;
 }
 
 @theme inline {

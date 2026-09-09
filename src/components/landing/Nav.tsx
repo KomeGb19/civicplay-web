@@ -23,7 +23,7 @@ export function Nav({ progress, onOpenMenu }: NavProps) {
         className="pointer-events-auto flex items-center gap-2.5 transition-opacity hover:opacity-90"
         aria-label="Civic Play home"
       >
-        <Image src="/props/civicplaywhite.png" alt="Civic Play logo" width={40} height={40} />
+        <Image src="/props/civicplaywhite.png" alt="Civic Play logo" width={40} height={40} className="w-10 h-10"/>
       </a>
 
       <div className="pointer-events-auto flex items-center gap-3">

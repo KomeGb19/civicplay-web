@@ -21,10 +21,16 @@ export function EndFooter({ visible }: EndFooterProps) {
     >
       <div className="mx-auto grid max-w-5xl gap-6 rounded-3xl bg-[var(--color-navy-deep)]/80 p-6 ring-1 ring-white/10 backdrop-blur-md md:grid-cols-[1.2fr_1fr_1fr] md:p-8">
         <div>
-          <Image src="/props/civicplaywhite.png" alt="Civic Play logo" width={40} height={40} />
+          <Image
+            src="/props/civicplaywhite.png"
+            alt="Civic Play logo"
+            width={40}
+            height={40}
+            className="w-10 h-10"
+          />
           <p className="mt-2 max-w-sm text-sm text-[var(--color-cream-muted)]">
-            Built by Roundcheck — youth-led fact-checking for truth, accountability, and media literacy
-            across Nigeria.
+            Built by Roundcheck — youth-led fact-checking for truth,
+            accountability, and media literacy across Nigeria.
           </p>
           <div className="mt-4 flex gap-4 text-sm font-semibold text-[var(--color-green)]">
             <a href={LINKS.facebook} target="_blank" rel="noreferrer">
@@ -49,10 +55,16 @@ export function EndFooter({ visible }: EndFooterProps) {
           >
             contact@civicplay.ng
           </a>
-          <a href={LINKS.phone1} className="mt-1 block text-sm text-[var(--color-cream-muted)]">
+          <a
+            href={LINKS.phone1}
+            className="mt-1 block text-sm text-[var(--color-cream-muted)]"
+          >
             09130497799
           </a>
-          <a href={LINKS.phone2} className="block text-sm text-[var(--color-cream-muted)]">
+          <a
+            href={LINKS.phone2}
+            className="block text-sm text-[var(--color-cream-muted)]"
+          >
             08160379312
           </a>
         </div>
@@ -64,7 +76,9 @@ export function EndFooter({ visible }: EndFooterProps) {
           <p className="mt-2 text-sm text-[var(--color-cream)]">
             {LINKS.donate.bank} · {LINKS.donate.accountNumber}
           </p>
-          <p className="text-sm text-[var(--color-cream-muted)]">{LINKS.donate.accountName}</p>
+          <p className="text-sm text-[var(--color-cream-muted)]">
+            {LINKS.donate.accountName}
+          </p>
           <p className="mt-4 text-xs text-[var(--color-cream-muted)]">
             © {new Date().getFullYear()} Roundcheck · Civic Play
           </p>

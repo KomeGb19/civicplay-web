@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Syne, Cal_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -32,6 +33,9 @@ export const metadata: Metadata = {
   description:
     "Learn. Compete. Test your civic knowledge. Civic Play is Nigeria’s interactive civic education quiz game for students and citizens.",
   metadataBase: new URL("https://civicplay.ng"),
+  icons: {
+    icon: "/props/civicplaywhite.png",
+  },
   openGraph: {
     title: "Civic Play — Learn Civics. Play to Win.",
     description:
@@ -73,9 +77,10 @@ export default function RootLayout({
       )}
     >
       <body
-        className="antialiased"
+        className="antialiased cursor-none"
         style={{ fontFamily: "var(--font-cal), ui-sans-serif, system-ui" }}
       >
+        <SmoothCursor />
         {children}
       </body>
     </html>
