@@ -34,6 +34,7 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
   const charY = lerp(58, 18, clamp01((p - 0.05) / 0.4));
   const charScale = lerp(0.85, 1.05, clamp01(p / 0.5));
   const charOpacity = lerp(0.95, 1, clamp01(p / 0.2));
+  const charTranslateX = lerp(-150, 0, clamp01((p - 0.05) / 0.4));
 
   // Phone appears around product
   const phoneOpacity = clamp01((p - 0.28) / 0.12);
@@ -197,7 +198,7 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
         style={{
           bottom: `${-charY + 8}%`,
           opacity: charOpacity,
-          transform: `translateX(-150%) scale(${charScale})`,
+          transform: `translateX(${charTranslateX}%) scale(${charScale})`,
           transformOrigin: "bottom center",
         }}
       />
