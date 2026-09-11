@@ -4,6 +4,8 @@ import {
   CivicBook,
   CivicCharacter,
   CivicShield,
+  Gavel,
+  JusticeScales,
   KnowledgeCoin,
   Megaphone,
   PhoneFrame,
@@ -49,8 +51,8 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
       {/* Far coins — slow drift */}
-      <KnowledgeCoin
-        className="absolute h-16 w-16 md:h-24 md:w-24"
+      <Gavel
+        className="absolute h-16 w-16 md:h-40 md:w-40"
         style={{
           left: "8%",
           top: `${lerp(18, -10, p)}%`,
@@ -68,8 +70,8 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           opacity: lerp(0.85, 0.4, p),
         }}
       />
-      <KnowledgeCoin
-        className="absolute h-20 w-20 md:h-28 md:w-28"
+      <JusticeScales
+        className="absolute h-24 w-24 md:h-40 md:w-40"
         style={{
           left: "72%",
           top: `${lerp(62, 20, p)}%`,
@@ -121,8 +123,8 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
         }}
       /> */}
       {/* Phone / product */}
-      <PhoneFrame
-        className="absolute h-44 w-24 md:h-64 md:w-36"
+      <Megaphone
+        className="absolute h-44 w-44 md:h-40 md:w-40"
         style={{
           right: `${phoneX}%`,
           top: `${phoneY}%`,
@@ -131,7 +133,7 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
         }}
       />
       {/* How-to orbit */}
-      <TimerBadge
+      {/* <TimerBadge
         className="absolute h-16 w-16 md:h-20 md:w-20"
         style={{
           left: "18%",
@@ -139,8 +141,8 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           opacity: howOpacity,
           transform: `translate(${Math.sin(p * 12) * 8}px, ${lerp(30, 0, howOpacity)}px) rotate(-8deg)`,
         }}
-      />
-      <StreakFlame
+      /> */}
+      {/* <StreakFlame
         className="absolute h-20 w-14 md:h-24 md:w-16"
         style={{
           right: "20%",
@@ -148,8 +150,8 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           opacity: howOpacity,
           transform: `translateY(${lerp(40, 0, howOpacity)}px)`,
         }}
-      />
-      <ScoreStar
+      /> */}
+      {/* <ScoreStar
         className="absolute h-14 w-14 md:h-18 md:w-18"
         style={{
           left: "48%",
@@ -157,10 +159,10 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           opacity: howOpacity,
           transform: `scale(${lerp(0.6, 1, howOpacity)}) rotate(${lerp(-20, 10, howOpacity)}deg)`,
         }}
-      />
+      /> */}
       {/* Proof floating badges */}
       <div
-        className="absolute left-[28%] top-[58%] max-w-[220px] rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-md md:left-[8%] -rotate-3 md:max-w-[280px] border border-green/30"
+        className="absolute hidden md:block left-[28%] top-[45%] max-w-[220px] rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-md md:left-[8%] -rotate-3 md:max-w-[280px] border border-green/30"
         style={{
           opacity: proofOpacity,
           transform: `translateY(${lerp(40, 0, proofOpacity)}px)`,
@@ -174,7 +176,7 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
         </p>
       </div>
       <div
-        className="absolute right-[8%] top-[52%] max-w-[240px] rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-md md:right-[8%] rotate-3 border border-green/30"
+        className="absolute hidden md:block right-[8%] top-[45%] max-w-[240px] rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-md md:right-[8%] rotate-3 border border-green/30"
         style={{
           opacity: proofOpacity,
           transform: `translateY(${lerp(50, 0, proofOpacity)}px)`,
@@ -188,8 +190,9 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           — Bamas Victoria, ICIR
         </p>
       </div>
+
       {/* Character */}
-      {/* <CivicCharacter
+      <CivicCharacter
         className="absolute left-1/2 h-[42vh] w-auto max-w-[280px] -translate-x-1/2 md:h-[52vh] md:max-w-[340px]"
         style={{
           bottom: `${-charY + 8}%`,
@@ -197,32 +200,7 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           transform: `translateX(-150%) scale(${charScale})`,
           transformOrigin: "bottom center",
         }}
-      /> */}
-
-      {/* <TextLoop
-        className="fixed left-1/2 w-auto max-w-[280px] translate-20  md:max-w-3xl"
-        style={{
-          bottom: `${-charY + 8}%`,
-          opacity: charOpacity,
-          transform: `translateX(-150%) scale(${charScale})`,
-          transformOrigin: "bottom center",
-        }}
-        text="React ✦ Bits"
-        shape="circle"
-        speed={90}
-        direction="forward"
-        separator="✦"
-        curviness={90}
-        fontSize={46}
-        fontWeight={800}
-        letterSpacing={2}
-        uppercase
-        color="#ffffff"
-        ribbon
-        ribbonColor="#00834E"
-        ribbonWidth={86}
-        pauseOnHover
-      /> */}
+      />
 
       {/* Soft vignette */}
       <div
