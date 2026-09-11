@@ -65,7 +65,7 @@ export const CHAPTERS: Chapter[] = [
 ];
 
 export const LINKS = {
-  play: "https://civicplay.ng/",
+  play: "https://civicplay.ng/civicplay/",
   contactMailto: "mailto:contact@civicplay.ng",
   phone1: "tel:+2349130497799",
   phone2: "tel:+2348160379312",
