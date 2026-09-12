@@ -5,6 +5,7 @@ import { EndFooter } from "@/components/landing/EndFooter";
 import { MenuOverlay } from "@/components/landing/MenuOverlay";
 import { Nav } from "@/components/landing/Nav";
 import { ParallaxLayer } from "@/components/landing/ParallaxLayer";
+import { BecomePartnerModal } from "@/components/landing/BecomePartnerModal";
 import { CHAPTERS, chapterAtProgress } from "@/lib/chapters";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,6 +26,7 @@ export function LandingExperience() {
   const bgRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
@@ -217,7 +219,7 @@ export function LandingExperience() {
         />
 
         <ParallaxLayer progress={progress} />
-        <ChapterCopy active={active} progress={progress} />
+        <ChapterCopy active={active} progress={progress} onOpenPartnerModal={() => setPartnerModalOpen(true)} />
         <EndFooter visible={showFooter} />
 
         {/* Scroll hint */}
@@ -234,6 +236,10 @@ export function LandingExperience() {
 
       <Nav progress={progress} onOpenMenu={() => setMenuOpen(true)} />
       <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <BecomePartnerModal
+        open={partnerModalOpen}
+        onClose={() => setPartnerModalOpen(false)}
+      />
 
       {/* Screen-reader chapter list */}
       <div className="sr-only">

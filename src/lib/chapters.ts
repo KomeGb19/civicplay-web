@@ -28,7 +28,7 @@ export const CHAPTERS: Chapter[] = [
     range: [0.14, 0.3],
     headline: "DEMOCRACY NEEDS\nPLAYERS, NOT\nSPECTATORS.",
     subline:
-      "Low youth turnout. Online misinformation. Civic knowledge gaps. Civic Play meets young people where they already are — in play.",
+      "Low youth turnout. Online misinformation. Civic knowledge gaps. Civic Play meets young people where they already are, in play.",
     bg: "#0a2744",
   },
   {
@@ -36,7 +36,7 @@ export const CHAPTERS: Chapter[] = [
     range: [0.3, 0.48],
     headline: "QUIZ. COMPETE.\nLEVEL UP YOUR\nCIVIC IQ.",
     subline:
-      "Test what you know about government, democracy, and citizenship — then climb the board with friends.",
+      "Test what you know about government, democracy, and citizenship, then climb the board with friends.",
     bg: "#0d3b2e",
   },
   {
@@ -52,7 +52,7 @@ export const CHAPTERS: Chapter[] = [
     range: [0.68, 0.84],
     headline: "BUILT FOR IMPACT.\nBACKED BY VOICES\nTHAT MATTER.",
     subline:
-      "“Finding an avenue to get young people interested in civic obligation is innovative and welcome.” — Chiamaka Okafor-Onumah, MILID Foundation",
+      "“Finding an avenue to get young people interested in civic obligation is innovative and welcoming” — Chiamaka Okafor-Onumah, MILID Foundation",
     bg: "#1a2f4a",
   },
   {
@@ -69,9 +69,9 @@ export const LINKS = {
   contactMailto: "mailto:contact@civicplay.ng",
   phone1: "tel:+2349130497799",
   phone2: "tel:+2348160379312",
-  facebook: "https://facebook.com",
-  twitter: "https://twitter.com",
-  youtube: "https://youtube.com",
+  twitter: "https://x.com/civicplayng",
+  instagram: "https://www.instagram.com/civicplayng",
+  tiktok: "https://www.tiktok.com/@civicplayng",
   donate: {
     bank: "Zenith Bank",
     accountName: "Roundcheck Media",

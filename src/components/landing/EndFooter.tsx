@@ -29,18 +29,33 @@ export function EndFooter({ visible }: EndFooterProps) {
             className="w-10 h-10"
           />
           <p className="mt-2 max-w-sm text-sm text-[var(--color-cream-muted)]">
-            Built by Roundcheck — youth-led fact-checking for truth,
+            Built by Roundcheck — A youth-led factchecking organization for truth,
             accountability, and media literacy across Nigeria.
           </p>
           <div className="mt-4 flex gap-4 text-sm font-semibold text-[var(--color-green)]">
-            <a href={LINKS.facebook} target="_blank" rel="noreferrer">
-              Facebook
-            </a>
-            <a href={LINKS.twitter} target="_blank" rel="noreferrer">
+            <a
+              href={LINKS.twitter}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:underline"
+            >
               X
             </a>
-            <a href={LINKS.youtube} target="_blank" rel="noreferrer">
-              YouTube
+            <a
+              href={LINKS.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:underline"
+            >
+              Instagram
+            </a>
+            <a
+              href={LINKS.tiktok}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:underline"
+            >
+              TikTok
             </a>
           </div>
         </div>

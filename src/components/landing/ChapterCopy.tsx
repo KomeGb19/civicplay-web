@@ -8,6 +8,7 @@ import DepthText from "@/components/DepthText";
 type ChapterCopyProps = {
   active: Chapter;
   progress: number;
+  onOpenPartnerModal?: () => void;
 };
 
 function opacityForChapter(chapter: Chapter, progress: number) {
@@ -21,7 +22,7 @@ function opacityForChapter(chapter: Chapter, progress: number) {
   return Math.min(fadeIn, fadeOut, Math.max(peak, fadeIn * fadeOut));
 }
 
-export function ChapterCopy({ active, progress }: ChapterCopyProps) {
+export function ChapterCopy({ active, progress, onOpenPartnerModal }: ChapterCopyProps) {
   const layers = useMemo(
     () =>
       CHAPTERS.map((chapter) => ({
@@ -156,18 +157,18 @@ export function ChapterCopy({ active, progress }: ChapterCopyProps) {
                 >
                   Play the game
                 </a>
-                <a
-                  href={LINKS.contactMailto}
+                <button
+                  onClick={onOpenPartnerModal}
                   className="rounded-full bg-white/10 px-7 py-3.5 font-[family-name:var(--font-syne)] text-sm font-bold uppercase tracking-wide text-[var(--color-cream)] ring-1 ring-white/25 backdrop-blur transition hover:bg-white/20"
                 >
                   Partner with us
-                </a>
-                <a
+                </button>
+                {/* <a
                   href={LINKS.contactMailto}
                   className="rounded-full px-5 py-3.5 text-sm font-semibold text-[var(--color-cream-muted)] underline-offset-4 hover:text-[var(--color-cream)] hover:underline"
                 >
                   Contact
-                </a>
+                </a> */}
               </div>
             ) : null}
           </div>

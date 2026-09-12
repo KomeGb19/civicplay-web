@@ -173,7 +173,8 @@ export function ParallaxLayer({ progress }: ParallaxLayerProps) {
           Roundcheck
         </p>
         <p className="mt-2 text-sm leading-snug text-[var(--color-cream)]">
-          Youth-led fact-checking · Civic Play is our next civic-tech push.
+          Youth-led fact-checking Organization <br />  Civic Play is our next
+          civic-tech push.
         </p>
       </div>
       <div
