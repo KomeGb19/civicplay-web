@@ -3,6 +3,7 @@ import { DM_Sans, Syne, Cal_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { AuthSessionProvider } from "@/components/providers/session-provider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -80,8 +81,10 @@ export default function RootLayout({
         className="antialiased cursor-none"
         style={{ fontFamily: "var(--font-cal), ui-sans-serif, system-ui" }}
       >
-        <SmoothCursor />
-        {children}
+        <AuthSessionProvider>
+          <SmoothCursor />
+          {children}
+        </AuthSessionProvider>
       </body>
     </html>
   );
