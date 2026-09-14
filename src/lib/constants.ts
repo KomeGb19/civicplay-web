@@ -17,18 +17,18 @@ export const TIMER_SECONDS = 15;
 export const UNLOCK_THRESHOLD = 90;
 
 export const AVATARS = [
-  { id: "eagle", label: "Eagle", emoji: "🦅" },
-  { id: "lion", label: "Lion", emoji: "🦁" },
-  { id: "baobab", label: "Baobab", emoji: "🌳" },
-  { id: "drum", label: "Talking Drum", emoji: "🥁" },
-  { id: "star", label: "Green Star", emoji: "⭐" },
-  { id: "torch", label: "Torch", emoji: "🔥" },
-  { id: "book", label: "Civic Book", emoji: "📘" },
-  { id: "ballot", label: "Ballot", emoji: "🗳️" },
-  { id: "shield", label: "Shield", emoji: "🛡️" },
-  { id: "sun", label: "Rising Sun", emoji: "☀️" },
-  { id: "wave", label: "Niger Wave", emoji: "🌊" },
-  { id: "crown", label: "Citizen Crown", emoji: "👑" },
+  { id: "eagle", label: "Aisha", emoji: "🦅" },
+  { id: "lion", label: "Adebayo", emoji: "🦁" },
+  { id: "baobab", label: "Ngozi", emoji: "🌳" },
+  { id: "drum", label: "Olisa", emoji: "🥁" },
+  { id: "star", label: "Chinedu", emoji: "⭐" },
+  { id: "torch", label: "Yusuf", emoji: "🔥" },
+  { id: "book", label: "Zainab", emoji: "📘" },
+  { id: "ballot", label: "Ose", emoji: "🗳️" },
+  { id: "shield", label: "Ugo", emoji: "🛡️" },
+  { id: "sun", label: "Ejiro", emoji: "☀️" },
+  { id: "wave", label: "Fatima", emoji: "🌊" },
+  { id: "crown", label: "Oluwaseun", emoji: "👑" },
 ] as const;
 
 export type AvatarId = (typeof AVATARS)[number]["id"];
