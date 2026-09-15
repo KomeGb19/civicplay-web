@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion } from "motion/react";
-import { Check, Copy } from "lucide-react";
+import { ArrowLeft, Check, Copy } from "lucide-react";
 import NumberFlow from "@number-flow/react";
 import { PlayShell } from "@/components/play/PlayShell";
 import { fireConfetti } from "@/components/play/ConfettiBurst";
@@ -73,6 +73,14 @@ export function ResultsView() {
 
   return (
     <PlayShell title="Round complete">
+      <div className="absolute left-2 top-2 sm:left-10 sm:top-4 z-20">
+        <button
+          onClick={() => router.back()}
+          className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
+        >
+          <ArrowLeft />
+        </button>
+      </div>
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { PlayShell } from "@/components/play/PlayShell";
 import { AvatarBadge } from "@/components/play/AvatarBadge";
+import { useRouter } from "next/navigation";
 import { LEVELS, LEVEL_META, type LevelId, type AvatarId } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { ArrowLeft } from "lucide-react";
 
 type Entry = {
   username: string;
@@ -17,6 +19,7 @@ export function LeaderboardView() {
   const [level, setLevel] = useState<LevelId>("basic");
   const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +32,15 @@ export function LeaderboardView() {
 
   return (
     <PlayShell title="Leaderboard">
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-2xl relative">
+        <div className="absolute left-2 top-2 sm:-left-15 sm:top-4 z-20">
+          <button
+            onClick={() => router.back()}
+            className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
+          >
+            <ArrowLeft />
+          </button>
+        </div>
         <h1 className="font-display text-3xl font-bold sm:text-4xl">
           Top civic minds
         </h1>

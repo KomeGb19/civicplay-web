@@ -39,6 +39,46 @@ export function QuizGame({ level }: { level: LevelId }) {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const selectedRef = useRef<number | null>(null);
 
+  // Sound effects
+  const shuffleSound = useRef<HTMLAudioElement | null>(null);
+  const pointSound = useRef<HTMLAudioElement | null>(null);
+  const failSound = useRef<HTMLAudioElement | null>(null);
+  const timeoutSound = useRef<HTMLAudioElement | null>(null);
+  const levelCompleteSound = useRef<HTMLAudioElement | null>(null);
+
+  // Initialize sound effects
+  useEffect(() => {
+    shuffleSound.current = new Audio("/sounds/carddeckshuffle.wav");
+    pointSound.current = new Audio("/sounds/pointgained.wav");
+    failSound.current = new Audio("/sounds/failing.wav");
+    timeoutSound.current = new Audio("/sounds/noanswer.wav");
+    levelCompleteSound.current = new Audio("/sounds/levelcompleted.wav");
+
+    // Preload sounds
+    const sounds = [
+      shuffleSound,
+      pointSound,
+      failSound,
+      timeoutSound,
+      levelCompleteSound,
+    ];
+    sounds.forEach((soundRef) => {
+      if (soundRef.current) {
+        soundRef.current.preload = "auto";
+      }
+    });
+
+    return () => {
+      // Clean up
+      sounds.forEach((soundRef) => {
+        if (soundRef.current) {
+          soundRef.current.pause();
+          soundRef.current = null;
+        }
+      });
+    };
+  }, []);
+
   const current = questions[index];
   const urgent = secondsLeft <= 5 && phase === "answering";
 
@@ -53,6 +93,12 @@ export function QuizGame({ level }: { level: LevelId }) {
     async (finalAnswers: PlayerAnswer[]) => {
       setPhase("submitting");
       clearTimer();
+      // Play level complete sound
+      if (levelCompleteSound.current) {
+        levelCompleteSound.current
+          .play()
+          .catch((e) => console.log("Level complete sound play failed:", e));
+      }
       try {
         const res = await fetch("/api/scores", {
           method: "POST",
@@ -91,6 +137,12 @@ export function QuizGame({ level }: { level: LevelId }) {
 
       if (correct) {
         setScore((s) => s + POINTS_PER_CORRECT);
+        // Play point gained sound
+        if (pointSound.current) {
+          pointSound.current
+            .play()
+            .catch((e) => console.log("Point sound play failed:", e));
+        }
         setStreak((s) => {
           const next = s + 1;
           if (next >= 2 && !reduceMotion) fireConfetti("hit");
@@ -98,6 +150,12 @@ export function QuizGame({ level }: { level: LevelId }) {
         });
       } else {
         setStreak(0);
+        // Play fail sound
+        if (failSound.current) {
+          failSound.current
+            .play()
+            .catch((e) => console.log("Fail sound play failed:", e));
+        }
         if (!reduceMotion) {
           setShake(true);
           setTimeout(() => setShake(false), 400);
@@ -141,6 +199,12 @@ export function QuizGame({ level }: { level: LevelId }) {
     ) {
       allowTimeoutRef.current = false;
       clearTimer();
+      // Play timeout sound
+      if (timeoutSound.current) {
+        timeoutSound.current
+          .play()
+          .catch((e) => console.log("Timeout sound play failed:", e));
+      }
       lockAnswer(selectedRef.current, true);
     }
   }, [secondsLeft, phase, clearTimer, lockAnswer]);
@@ -171,6 +235,12 @@ export function QuizGame({ level }: { level: LevelId }) {
           setIndex(0);
           setScore(0);
           setStreak(0);
+          // Play shuffle sound when questions are loaded
+          if (shuffleSound.current) {
+            shuffleSound.current
+              .play()
+              .catch((e) => console.log("Shuffle sound play failed:", e));
+          }
           setPhase("answering");
         }
       } catch {
@@ -254,7 +324,7 @@ export function QuizGame({ level }: { level: LevelId }) {
                   exit={{ opacity: 0 }}
                   className="rounded-full bg-coral/20 px-3 py-1 text-sm font-bold text-coral"
                 >
-                  {streak}x streak
+                  🔥{streak}x streak
                 </motion.div>
               ) : null}
             </AnimatePresence>
@@ -285,7 +355,7 @@ export function QuizGame({ level }: { level: LevelId }) {
                     disabled={revealed || phase === "submitting"}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
+                    transition={{ delay: i * 0.08 }}
                     whileTap={revealed ? undefined : { scale: 0.98 }}
                     onClick={() => {
                       setSelected(i);
@@ -308,7 +378,9 @@ export function QuizGame({ level }: { level: LevelId }) {
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-cream/10 font-display text-sm">
                       {String.fromCharCode(65 + i)}
                     </span>
-                    <span className="flex-1 text-sm sm:text-base">{option}</span>
+                    <span className="flex-1 text-sm sm:text-base">
+                      {option}
+                    </span>
                     {revealed && isRight ? (
                       <Check className="size-5 text-green" />
                     ) : null}

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { motion } from "motion/react";
 import { PlayShell } from "@/components/play/PlayShell";
+import { ArrowLeft } from "lucide-react";
 
 export function LoginForm({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
@@ -18,7 +19,9 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
 
   useEffect(() => {
     if (status === "authenticated" && session) {
-      router.replace(session.user.needsOnboarding ? "/play/onboarding" : "/play");
+      router.replace(
+        session.user.needsOnboarding ? "/play/onboarding" : "/play",
+      );
     }
   }, [status, session, router]);
 
@@ -86,6 +89,14 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
         animate={{ opacity: 1, y: 0 }}
         className="mx-auto max-w-md"
       >
+        <div className="absolute left-2 top-2 sm:-left-15 sm:top-4 z-20">
+          <button
+            onClick={() => router.push("/")}
+            className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
+          >
+            <ArrowLeft />
+          </button>
+        </div>
         <h1 className="font-display text-3xl font-bold sm:text-4xl">
           {mode === "login" ? "Welcome back" : "Join Civic Play"}
         </h1>

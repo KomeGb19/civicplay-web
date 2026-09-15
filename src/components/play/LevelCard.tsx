@@ -83,7 +83,7 @@ export function LeaderboardLink() {
   return (
     <Link
       href="/play/leaderboard"
-      className="inline-flex items-center gap-2 rounded-xl border border-gold/40 bg-gold/10 px-4 py-2.5 text-sm font-semibold text-gold hover:bg-gold/20"
+      className="inline-flex items-center gap-2 rounded-xl hover:scale-105 duration-500 border border-gold/40 bg-gold/10 px-4 py-2.5 text-sm font-semibold text-gold hover:bg-gold/20"
     >
       <Trophy className="size-4" />
       Leaderboard

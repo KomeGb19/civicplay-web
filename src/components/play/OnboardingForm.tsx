@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { AvatarPicker } from "@/components/play/AvatarPicker";
 import { PlayShell } from "@/components/play/PlayShell";
 import type { AvatarId } from "@/lib/constants";
+import { ArrowLeft } from "lucide-react";
 
 export function OnboardingForm() {
   const router = useRouter();
@@ -70,7 +71,7 @@ export function OnboardingForm() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mx-auto max-w-2xl"
+        className="mx-auto max-w-2xl relative"
       >
         <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
           Choose your look. Claim your name.
