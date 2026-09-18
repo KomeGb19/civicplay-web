@@ -3,11 +3,7 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Lock, Trophy, Unlock } from "lucide-react";
-import {
-  LEVEL_META,
-  UNLOCK_THRESHOLD,
-  type LevelId,
-} from "@/lib/constants";
+import { LEVEL_META, UNLOCK_THRESHOLD, type LevelId } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function LevelCard({
@@ -83,7 +79,7 @@ export function LeaderboardLink() {
   return (
     <Link
       href="/play/leaderboard"
-      className="inline-flex items-center gap-2 rounded-xl hover:scale-105 duration-500 border border-gold/40 bg-gold/10 px-4 py-2.5 text-sm font-semibold text-gold hover:bg-gold/20"
+      className="inline-flex items-center justify-center w-35 gap-2 rounded-xl hover:scale-105 duration-500 border border-gold/40 bg-gold/10 px-4 py-2.5 text-sm font-semibold text-gold hover:bg-gold/20"
     >
       <Trophy className="size-4" />
       Leaderboard

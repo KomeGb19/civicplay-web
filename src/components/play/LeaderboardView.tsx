@@ -5,7 +5,12 @@ import { motion } from "motion/react";
 import { PlayShell } from "@/components/play/PlayShell";
 import { AvatarBadge } from "@/components/play/AvatarBadge";
 import { useRouter } from "next/navigation";
-import { LEVELS, LEVEL_META, type LevelId, type AvatarId } from "@/lib/constants";
+import {
+  LEVELS,
+  LEVEL_META,
+  type LevelId,
+  type AvatarId,
+} from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 
@@ -68,7 +73,7 @@ export function LeaderboardView() {
 
         <div className="mt-8 space-y-2">
           {loading ? (
-            <p className="text-cream-muted">Loading…</p>
+            <div className="loader mx-auto mt-20" />
           ) : entries.length === 0 ? (
             <p className="rounded-xl border border-cream/10 bg-navy-deep/50 p-6 text-cream-muted">
               No scores yet for this level. Be the first!

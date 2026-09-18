@@ -7,6 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import { motion } from "motion/react";
 import { PlayShell } from "@/components/play/PlayShell";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 export function LoginForm({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
@@ -144,11 +145,11 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
             disabled={loading}
             className="w-full rounded-xl bg-green py-3 font-display text-lg font-bold text-navy-deep hover:bg-green-bright disabled:opacity-60"
           >
-            {loading
-              ? "Please wait…"
-              : mode === "login"
-                ? "Sign in"
-                : "Create account"}
+            {loading ? (
+              <div className="loader mx-auto" />
+            ) : mode === "login"
+              ? "Sign in"
+              : "Create account"}
           </button>
         </form>
 
@@ -162,9 +163,10 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
           type="button"
           disabled={loading}
           onClick={() => signIn("google", { callbackUrl: "/play" })}
-          className="w-full rounded-xl border border-cream/25 bg-cream/5 py-3 font-medium hover:bg-cream/10 disabled:opacity-60"
+          className="w-full rounded-xl border flex items-center justify-center border-cream/25 bg-cream/5 py-3 font-medium hover:bg-cream/10 disabled:opacity-60"
         >
-          Continue with Google
+          Continue with Google 
+          <Image src="/google.png" alt="Google logo" width={20} height={20} className="inline ml-2" />
         </button>
 
         <button

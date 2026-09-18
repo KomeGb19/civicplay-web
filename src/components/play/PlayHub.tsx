@@ -60,7 +60,7 @@ export function PlayHub() {
   if (status === "loading") {
     return (
       <PlayShell>
-        <p className="text-cream-muted">Loading arena…</p>
+        <div className="loader mt-40 mx-auto" />
       </PlayShell>
     );
   }
@@ -98,7 +98,7 @@ export function PlayHub() {
               onClick={startGuest}
               className="rounded-xl border border-gold/40 bg-gold/10 px-6 py-3 font-semibold text-gold hover:bg-gold/20 disabled:opacity-60"
             >
-              {loadingGuest ? "Starting…" : "Play as guest"}
+              {loadingGuest ? <div className="loader mx-auto" /> : "Play as guest"}
             </button>
           </div>
         </motion.div>

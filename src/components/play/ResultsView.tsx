@@ -54,7 +54,7 @@ export function ResultsView() {
   if (!result) {
     return (
       <PlayShell>
-        <p className="text-cream-muted">Loading results…</p>
+        <div className="loader mt-40 mx-auto" />
       </PlayShell>
     );
   }
@@ -165,7 +165,11 @@ export function ResultsView() {
                   : "border-cream/20 hover:bg-cream/10",
               )}
             >
-              {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
+              {copied ? (
+                <Check className="size-4" />
+              ) : (
+                <Copy className="size-4" />
+              )}
               {copied ? "Copied" : "Copy"}
             </button>
           </div>

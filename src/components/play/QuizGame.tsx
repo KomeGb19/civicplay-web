@@ -94,11 +94,21 @@ export function QuizGame({ level }: { level: LevelId }) {
       setPhase("submitting");
       clearTimer();
       // Play level complete sound
-      if (levelCompleteSound.current) {
-        levelCompleteSound.current
-          .play()
-          .catch((e) => console.log("Level complete sound play failed:", e));
-      }
+      const sound = levelCompleteSound.current;
+      const soundPromise = sound
+        ? new Promise<void>((resolve, _reject) => {
+            sound.play().catch((e) => {
+              console.log("Level complete sound play failed:", e);
+              resolve(); // resolve anyway to avoid hanging
+            });
+            const onEnded = () => {
+              sound.removeEventListener("ended", onEnded);
+              resolve();
+            };
+            sound.addEventListener("ended", onEnded);
+          })
+        : Promise.resolve();
+
       try {
         const res = await fetch("/api/scores", {
           method: "POST",
@@ -115,6 +125,8 @@ export function QuizGame({ level }: { level: LevelId }) {
           "civicplay_last_result",
           JSON.stringify({ level, ...data }),
         );
+        // Wait for sound to finish before navigating
+        await soundPromise;
         router.push("/play/results");
       } catch {
         setError("Could not submit score");
@@ -278,7 +290,7 @@ export function QuizGame({ level }: { level: LevelId }) {
   if (phase === "loading" || status === "loading") {
     return (
       <PlayShell title={LEVEL_META[level].label}>
-        <p className="text-cream-muted">Shuffling questions…</p>
+        <div className="loader mt-40 mx-auto" />
       </PlayShell>
     );
   }

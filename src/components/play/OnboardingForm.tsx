@@ -61,7 +61,7 @@ export function OnboardingForm() {
   if (status === "loading") {
     return (
       <PlayShell title="Create your player">
-        <p className="text-cream-muted">Loading…</p>
+        <div className="loader mt-40 mx-auto" />
       </PlayShell>
     );
   }
@@ -71,7 +71,7 @@ export function OnboardingForm() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mx-auto max-w-2xl relative"
+        className="mx-auto mt-5 max-w-2xl relative"
       >
         <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
           Choose your look. Claim your name.
@@ -127,7 +127,7 @@ export function OnboardingForm() {
             disabled={loading}
             className="w-full rounded-xl bg-green px-4 py-3 font-display text-lg font-bold text-navy-deep transition hover:bg-green-bright disabled:opacity-60"
           >
-            {loading ? "Saving…" : "Enter the arena"}
+            {loading ? <div className="loader mx-auto" /> : "Enter the arena"}
           </button>
         </form>
       </motion.div>

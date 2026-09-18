@@ -7,7 +7,7 @@ export const LEVEL_META: Record<
 > = {
   basic: { label: "Basic", order: 0, unlocks: "intermediary" },
   intermediary: { label: "Intermediary", order: 1, unlocks: "advance" },
-  advance: { label: "Advance", order: 2, unlocks: null },
+  advance: { label: "Advanced", order: 2, unlocks: null },
 };
 
 export const QUESTIONS_PER_ROUND = 15;
