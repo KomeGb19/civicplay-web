@@ -20,9 +20,11 @@ export function PlayShell({
   const { data: session, update, status } = useSession();
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(() => {
-    // Retrieve from localStorage on initial render
-    const saved = window.localStorage.getItem("isMusicPlaying");
-    return saved === null ? true : saved === "true";
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem("isMusicPlaying");
+      return saved === null ? true : saved === "true";
+    }
+    return true;
   });
   const [selectedAvatarId, setSelectedAvatarId] = useState(session?.user?.avatarId ?? null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -31,6 +33,29 @@ export function PlayShell({
   useEffect(() => {
     window.localStorage.setItem("isMusicPlaying", String(isMusicPlaying));
   }, [isMusicPlaying]);
+
+  // Click sound effect
+  const clickSoundRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (!clickSoundRef.current) {
+      clickSoundRef.current = new Audio('/sounds/interfaceclick.wav');
+      clickSoundRef.current.volume = 0.5; // adjust volume as needed
+    }
+
+    const handleClick = () => {
+      const sound = clickSoundRef.current;
+      if (sound) {
+        sound.currentTime = 0; // restart from beginning
+        sound.play().catch(e => console.log('Click sound play failed:', e));
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []); // empty deps to run once
 
   // Audio control effects
   useEffect(() => {
@@ -57,29 +82,6 @@ export function PlayShell({
       }
     };
   }, [isMusicPlaying]);
-
-  // Click sound effect
-  const clickSoundRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    if (!clickSoundRef.current) {
-      clickSoundRef.current = new Audio('/sounds/interfaceclick.wav');
-      clickSoundRef.current.volume = 0.5; // adjust volume as needed
-    }
-
-    const handleClick = () => {
-      const sound = clickSoundRef.current;
-      if (sound) {
-        sound.currentTime = 0; // restart from beginning
-        sound.play().catch(e => console.log('Click sound play failed:', e));
-      }
-    };
-
-    document.addEventListener('click', handleClick);
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  }, []); // empty deps to run once
 
   const handleProfileClick = () => {
     setShowProfileModal(true);
