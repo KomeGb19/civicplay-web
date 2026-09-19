@@ -98,7 +98,7 @@ export function PlayHub() {
               onClick={startGuest}
               className="rounded-xl border border-gold/40 bg-gold/10 px-6 py-3 font-semibold text-gold hover:bg-gold/20 disabled:opacity-60"
             >
-              {loadingGuest ? <div className="loader mx-auto" /> : "Play as guest"}
+              {loadingGuest ? <p>Starting…</p> : <p>Play as guest</p>}
             </button>
           </div>
         </motion.div>
