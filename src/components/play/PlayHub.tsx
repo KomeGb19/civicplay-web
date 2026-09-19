@@ -3,12 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { motion } from "motion/react";
 import { PlayShell } from "@/components/play/PlayShell";
 import { LevelCard, LeaderboardLink } from "@/components/play/LevelCard";
 import { LEVELS, type LevelId } from "@/lib/constants";
 import { isLevelUnlocked } from "@/lib/quiz-engine";
+import { useSessionStatus } from "@/lib/hooks/useSessionStatus";
 
 type Profile = {
   username: string | null;
@@ -19,16 +20,13 @@ type Profile = {
 
 export function PlayHub() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { session, status, isLoading, isAuthenticated, needsOnboarding, update } = useSessionStatus();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loadingGuest, setLoadingGuest] = useState(false);
 
   useEffect(() => {
-    if (status === "authenticated") {
-      if (session?.user.needsOnboarding) {
-        router.replace("/play/onboarding");
-        return;
-      }
+    if (isAuthenticated && session) {
+      // Fetch profile data for bestScores and other profile info
       fetch("/api/profile")
         .then((r) => r.json())
         .then((data) => {
@@ -40,7 +38,7 @@ export function PlayHub() {
         })
         .catch(() => setProfile(null));
     }
-  }, [status, session, router]);
+  }, [isAuthenticated, session, router]);
 
   const bestScores = useMemo(
     () =>
@@ -57,7 +55,7 @@ export function PlayHub() {
     await signIn("guest", { callbackUrl: "/play/onboarding" });
   }
 
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <PlayShell>
         <div className="loader mt-40 mx-auto" />
@@ -65,7 +63,7 @@ export function PlayHub() {
     );
   }
 
-  if (status === "unauthenticated") {
+  if (!isAuthenticated) {
     return (
       <PlayShell>
         <motion.div

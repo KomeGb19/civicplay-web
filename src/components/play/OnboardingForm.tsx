@@ -2,32 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { motion } from "motion/react";
 import { AvatarPicker } from "@/components/play/AvatarPicker";
 import { PlayShell } from "@/components/play/PlayShell";
 import type { AvatarId } from "@/lib/constants";
-import { ArrowLeft } from "lucide-react";
+import { useSessionStatus } from "@/lib/hooks/useSessionStatus";
 
 export function OnboardingForm() {
   const router = useRouter();
-  const { data: session, update, status } = useSession();
+  const { isLoading, isAuthenticated, needsOnboarding, update } =
+    useSessionStatus();
   const [username, setUsername] = useState("");
   const [avatarId, setAvatarId] = useState<AvatarId | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Redirect unauthenticated users to login
   useEffect(() => {
-    if (status === "unauthenticated") {
+    if (!isAuthenticated) {
       router.replace("/login");
     }
-  }, [status, router]);
+  }, [isAuthenticated, router]);
 
+  // Redirect users who don't need onboarding to play
   useEffect(() => {
-    if (session && !session.user.needsOnboarding) {
+    if (isAuthenticated && !needsOnboarding) {
       router.replace("/play");
     }
-  }, [session, router]);
+  }, [isAuthenticated, needsOnboarding, router]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -58,7 +60,7 @@ export function OnboardingForm() {
     }
   }
 
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <PlayShell title="Create your player">
         <div className="loader mt-40 mx-auto" />
