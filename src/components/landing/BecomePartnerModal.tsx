@@ -287,13 +287,7 @@ export function BecomePartnerModal({
 
                 <div className="space-y-4">
                   {loading ? (
-                    <button
-                      type="submit"
-                      disabled
-                      className="w-full rounded-full bg-green/20 px-6 py-2.5 font-[family-name:var(--font-cal)] text-sm font-bold uppercase tracking-wide text-cream"
-                    >
-                      Submitting...
-                    </button>
+                    <div className="loader mx-auto" />
                   ) : (
                     <button
                       type="submit"

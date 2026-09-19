@@ -64,8 +64,20 @@ export const CHAPTERS: Chapter[] = [
   },
 ];
 
+/* const getBaseUrl = () => {
+  // Use NEXTAUTH_URL if available, otherwise fallback to relative path
+  if (typeof process !== 'undefined' && process.env.NEXTAUTH_URL) {
+    return process.env.NEXTAUTH_URL.endsWith('/')
+      ? process.env.NEXTAUTH_URL.slice(0, -1)
+      : process.env.NEXTAUTH_URL;
+  }
+  // Fallback for server-side when env var missing (should not happen in production)
+  return '';
+};
+ */
 export const LINKS = {
-  play: "https://play.civicplay.ng/",
+  /* play: `${getBaseUrl()}/play`, */
+  play: "/play",
   contactMailto: "mailto:contact@civicplay.ng",
   phone1: "tel:+2349130497799",
   phone2: "tel:+2348160379312",
