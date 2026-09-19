@@ -1,0 +1,1 @@
+- [Debug authentication issue](memory/debug-auth-issue.md) — identified missing Google OAuth credentials in production
