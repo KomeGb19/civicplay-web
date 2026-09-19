@@ -14,7 +14,6 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +35,7 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
         const res = await fetch("/api/auth/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password, name }),
+          body: JSON.stringify({ email, password }),
         });
         const data = await res.json();
         if (!res.ok) {
@@ -108,14 +107,6 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
         </p>
 
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
-          {mode === "signup" ? (
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Display name"
-              className="w-full rounded-xl border border-cream/20 bg-navy-deep/60 px-4 py-3 outline-none focus:ring-2 focus:ring-green/40"
-            />
-          ) : null}
           <input
             type="email"
             required
@@ -165,7 +156,7 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
           onClick={() => signIn("google", { callbackUrl: "/play" })}
           className="w-full rounded-xl border flex items-center justify-center border-cream/25 bg-cream/5 py-3 font-medium hover:bg-cream/10 disabled:opacity-60"
         >
-          Continue with Google 
+          Continue with Google
           <Image src="/google.png" alt="Google logo" width={20} height={20} className="inline ml-2" />
         </button>
 

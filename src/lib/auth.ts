@@ -68,26 +68,31 @@ const providers = [
         const parsed = credentialsSchema.safeParse(raw);
         if (!parsed.success) return null;
 
-        await connectDb();
-        const user = await User.findOne({
-          email: parsed.data.email.toLowerCase(),
-        });
-        if (!user?.passwordHash) return null;
+        try {
+          await connectDb();
+          const user = await User.findOne({
+            email: parsed.data.email.toLowerCase(),
+          });
+          if (!user?.passwordHash) return null;
 
-        const ok = await bcrypt.compare(
-          parsed.data.password,
-          user.passwordHash,
-        );
-        if (!ok) return null;
+          const ok = await bcrypt.compare(
+            parsed.data.password,
+            user.passwordHash,
+          );
+          if (!ok) return null;
 
-        return {
-          id: user._id.toString(),
-          email: user.email,
-          name: user.name ?? user.username ?? undefined,
-          role: "user",
-          username: user.username ?? null,
-          avatarId: (user.avatarId as AvatarId | undefined) ?? null,
-        };
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name ?? user.username ?? undefined,
+            role: "user",
+            username: user.username ?? null,
+            avatarId: (user.avatarId as AvatarId | undefined) ?? null,
+          };
+        } catch (err) {
+          console.error("Error authorizing credentials user:", err);
+          return null;
+        }
       },
     }),
     Credentials({
@@ -97,38 +102,50 @@ const providers = [
         guestId: { label: "Guest ID", type: "text" },
       },
       async authorize(raw) {
-        await connectDb();
-        const guestId =
-          typeof raw?.guestId === "string" && raw.guestId.length > 0
-            ? raw.guestId
-            : crypto.randomUUID();
+        try {
+          await connectDb();
+          const guestId =
+            typeof raw?.guestId === "string" && raw.guestId.length > 0
+              ? raw.guestId
+              : crypto.randomUUID();
 
-        let user = await User.findOne({ guestId, role: "guest" });
-        if (!user) {
-          user = await User.create({
+          let user = await User.findOne({ guestId, role: "guest" });
+          if (!user) {
+            user = await User.create({
+              role: "guest",
+              guestId,
+              name: "Guest",
+              bestScores: { basic: 0, intermediary: 0, advance: 0 },
+            });
+          }
+
+          return {
+            id: user._id.toString(),
+            name: user.username ?? "Guest",
             role: "guest",
-            guestId,
-            name: "Guest",
-            bestScores: { basic: 0, intermediary: 0, advance: 0 },
-          });
+            username: user.username ?? null,
+            avatarId: (user.avatarId as AvatarId | undefined) ?? null,
+            guestId: user.guestId,
+          };
+        } catch (err) {
+          console.error("Error authorizing guest:", err);
+          return null;
         }
-
-        return {
-          id: user._id.toString(),
-          name: user.username ?? "Guest",
-          role: "guest",
-          username: user.username ?? null,
-          avatarId: (user.avatarId as AvatarId | undefined) ?? null,
-          guestId: user.guestId,
-        };
       },
     }),
 ];
 
+let adapter = undefined;
+if (process.env.MONGODB_URI) {
+  try {
+    adapter = MongoDBAdapter(getMongoClient());
+  } catch (err) {
+    console.error("Failed to create MongoDB adapter:", err);
+  }
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: process.env.MONGODB_URI
-    ? MongoDBAdapter(getMongoClient())
-    : undefined,
+  adapter,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
@@ -182,13 +199,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   events: {
     async createUser({ user }) {
-      await connectDb();
-      await User.findByIdAndUpdate(user.id, {
-        $setOnInsert: {
-          role: "user",
-          bestScores: { basic: 0, intermediary: 0, advance: 0 },
-        },
-      });
+      try {
+        await connectDb();
+        await User.findByIdAndUpdate(user.id, {
+          $setOnInsert: {
+            role: "user",
+            bestScores: { basic: 0, intermediary: 0, advance: 0 },
+          },
+        });
+      } catch (err) {
+        console.error("Error creating user:", err);
+      }
     },
   },
 });

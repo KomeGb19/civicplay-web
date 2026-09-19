@@ -7,7 +7,6 @@ import { User } from "@/models/User";
 const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6).max(72),
-  name: z.string().min(1).max(60).optional(),
 });
 
 export async function POST(request: Request) {
@@ -35,7 +34,6 @@ export async function POST(request: Request) {
     await User.create({
       email,
       passwordHash,
-      name: parsed.data.name ?? email.split("@")[0],
       role: "user",
       bestScores: { basic: 0, intermediary: 0, advance: 0 },
     });
