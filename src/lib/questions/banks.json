@@ -329,6 +329,391 @@
       ],
       "correctIndex": 0,
       "explanation": "Political parties aggregate ideas, compete in elections, and provide citizens with choices for leadership."
+    },
+    {
+      "text": "What type of government does Nigeria operate?",
+      "options": [
+        "Monarchy",
+        "Democracy",
+        "Military dictatorship",
+        "Parliamentary monarchy"
+      ],
+      "correctIndex": 1,
+      "explanation": "Citizens choose their leaders through elections."
+    },
+    {
+      "text": "Who is the head of the Federal Executive in Nigeria?",
+      "options": [
+        "The Senate President",
+        "The Chief Justice of Nigeria",
+        "The President",
+        "The Speaker of the House of Representatives"
+      ],
+      "correctIndex": 2,
+      "explanation": "The President leads the Federal Executive."
+    },
+    {
+      "text": "Nigeria operates a government based on the principle of separation of powers. Which three arms of government are involved?",
+      "options": [
+        "Federal, State and Local",
+        "Executive, Legislative and Judiciary",
+        "President, Governors and Councillors",
+        "Senate, House and Courts"
+      ],
+      "correctIndex": 1,
+      "explanation": "These are the three arms of government."
+    },
+    {
+      "text": "Which body is responsible for conducting federal and state elections in Nigeria?",
+      "options": [
+        "EFCC",
+        "INEC",
+        "NASS",
+        "NYSC"
+      ],
+      "correctIndex": 1,
+      "explanation": "INEC organises and manages elections."
+    },
+    {
+      "text": "What does INEC stand for?",
+      "options": [
+        "Independent National Electoral Commission",
+        "International Nigerian Electoral Council",
+        "Independent Nigerian Election Council",
+        "Inter-National Electoral Committee"
+      ],
+      "correctIndex": 0,
+      "explanation": "That is the full name of INEC."
+    },
+    {
+      "text": "What is the minimum voting age in Nigeria?",
+      "options": [
+        "16",
+        "18",
+        "21",
+        "25"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nigerians can vote from age 18."
+    },
+    {
+      "text": "What does PVC stand for?",
+      "options": [
+        "Permanent Voter's Card",
+        "Personal Voting Certificate",
+        "Political Voter Card",
+        "Permanent Voting Certificate"
+      ],
+      "correctIndex": 0,
+      "explanation": "It is used by registered voters for elections."
+    },
+    {
+      "text": "What is the supreme law of Nigeria?",
+      "options": [
+        "Electoral Act",
+        "The Constitution",
+        "Criminal Code",
+        "National Assembly Act"
+      ],
+      "correctIndex": 1,
+      "explanation": "All other laws must follow the Constitution."
+    },
+    {
+      "text": "Which chapter of the 1999 Constitution contains fundamental rights?",
+      "options": [
+        "Chapter I",
+        "Chapter II",
+        "Chapter IV",
+        "Chapter VI"
+      ],
+      "correctIndex": 2,
+      "explanation": "Chapter IV protects fundamental human rights."
+    },
+    {
+      "text": "Which of the following is a fundamental right protected by the Nigerian Constitution?",
+      "options": [
+        "Right to free food",
+        "Right to freedom of expression",
+        "Right to a government job",
+        "Right to win an election"
+      ],
+      "correctIndex": 1,
+      "explanation": "Citizens have a constitutional right to express themselves."
+    },
+    {
+      "text": "Which of the following is a civic responsibility of a Nigerian citizen?",
+      "options": [
+        "Obeying the law",
+        "Ignoring elections",
+        "Destroying public property",
+        "Refusing to pay legitimate taxes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Citizens are expected to obey lawful rules."
+    },
+    {
+      "text": "Why should citizens pay taxes?",
+      "options": [
+        "To personally enrich politicians",
+        "To contribute to government revenue used to provide public services",
+        "To guarantee employment",
+        "To avoid participating in elections"
+      ],
+      "correctIndex": 1,
+      "explanation": "Taxes help government provide public services."
+    },
+    {
+      "text": "Which of the following demonstrates responsible citizenship?",
+      "options": [
+        "Spreading unverified information",
+        "Protecting public property",
+        "Selling your vote",
+        "Encouraging political violence"
+      ],
+      "correctIndex": 1,
+      "explanation": "Public property belongs to everyone."
+    },
+    {
+      "text": "In what year did Nigeria gain independence from British colonial rule?",
+      "options": [
+        "1957",
+        "1960",
+        "1963",
+        "1970"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nigeria became independent on October 1, 1960."
+    },
+    {
+      "text": "On what date does Nigeria celebrate Independence Day?",
+      "options": [
+        "January 1",
+        "May 29",
+        "October 1",
+        "October 15"
+      ],
+      "correctIndex": 2,
+      "explanation": "Nigeria gained independence on October 1, 1960."
+    },
+    {
+      "text": "Who became Nigeria's first Prime Minister after independence?",
+      "options": [
+        "Nnamdi Azikiwe",
+        "Tafawa Balewa",
+        "Obafemi Awolowo",
+        "Ahmadu Bello"
+      ],
+      "correctIndex": 1,
+      "explanation": "He became Nigeria's first Prime Minister."
+    },
+    {
+      "text": "What are the colours of the Nigerian flag?",
+      "options": [
+        "Green, white and green",
+        "Green, yellow and red",
+        "White, blue and green",
+        "Red, white and blue"
+      ],
+      "correctIndex": 0,
+      "explanation": "Nigeria's flag has two green bands and one white band."
+    },
+    {
+      "text": "What does the green colour in Nigeria's flag traditionally represent?",
+      "options": [
+        "Agriculture and natural wealth",
+        "Military power",
+        "Religion",
+        "Oil alone"
+      ],
+      "correctIndex": 0,
+      "explanation": "Green represents Nigeria's agricultural and natural resources."
+    },
+    {
+      "text": "What does the white colour in Nigeria's flag traditionally symbolise?",
+      "options": [
+        "Peace and unity",
+        "Military strength",
+        "Wealth",
+        "Political power"
+      ],
+      "correctIndex": 0,
+      "explanation": "White represents peace and unity."
+    },
+    {
+      "text": "What does EFCC stand for?",
+      "options": [
+        "Economic and Financial Crimes Commission",
+        "Economic Federal Crimes Council",
+        "Enforcement of Financial Crimes Commission",
+        "Economic and Fiscal Control Commission"
+      ],
+      "correctIndex": 0,
+      "explanation": "That is the full name of EFCC."
+    },
+    {
+      "text": "What does ICPC stand for?",
+      "options": [
+        "Independent Commission for Public Control",
+        "Independent Corrupt Practices and Other Related Offences Commission",
+        "International Commission for Political Crimes",
+        "Independent Council for Public Corruption"
+      ],
+      "correctIndex": 1,
+      "explanation": "That is the full name of ICPC."
+    },
+    {
+      "text": "Which institution is responsible for monetary policy and issuing Nigeria's currency?",
+      "options": [
+        "Ministry of Finance",
+        "Central Bank of Nigeria",
+        "Federal Inland Revenue Service",
+        "Nigeria Customs Service"
+      ],
+      "correctIndex": 1,
+      "explanation": "The CBN manages monetary policy and issues currency."
+    },
+    {
+      "text": "Who was Nigeria's first President?",
+      "options": [
+        "Nnamdi Azikiwe",
+        "Tafawa Balewa",
+        "Yakubu Gowon",
+        "Olusegun Obasanjo"
+      ],
+      "correctIndex": 0,
+      "explanation": "He became Nigeria's first President in 1963."
+    },
+    {
+      "text": "What is Nigeria's national motto?",
+      "options": [
+        "Unity and Progress",
+        "Peace, Progress and Prosperity",
+        "Unity and Faith, Peace and Progress",
+        "One Nation, One People"
+      ],
+      "correctIndex": 2,
+      "explanation": "This is Nigeria's official national motto."
+    },
+    {
+      "text": "Which animal appears on Nigeria's coat of arms?",
+      "options": [
+        "Eagle",
+        "Lion",
+        "Leopard",
+        "Horse"
+      ],
+      "correctIndex": 0,
+      "explanation": "An eagle appears above the shield."
+    },
+    {
+      "text": "What is the main role of the Nigeria Police Force?",
+      "options": [
+        "Conducting elections",
+        "Maintaining law and order and preventing and detecting crime",
+        "Making federal laws",
+        "Collecting customs duties"
+      ],
+      "correctIndex": 1,
+      "explanation": "The police help maintain public safety and order."
+    },
+    {
+      "text": "Which institution is responsible for collecting federal government taxes?",
+      "options": [
+        "FIRS",
+        "INEC",
+        "EFCC",
+        "NIMC"
+      ],
+      "correctIndex": 0,
+      "explanation": "FIRS collects federal taxes."
+    },
+    {
+      "text": "What does NIMC primarily manage?",
+      "options": [
+        "National identity registration and the National Identification Number system",
+        "National elections",
+        "University admissions",
+        "Nigeria's currency"
+      ],
+      "correctIndex": 0,
+      "explanation": "NIMC manages Nigeria's national identity system."
+    },
+    {
+      "text": "Which agency is responsible for regulating the Nigerian broadcast industry?",
+      "options": [
+        "NCC",
+        "NBC",
+        "NITDA",
+        "NAFDAC"
+      ],
+      "correctIndex": 1,
+      "explanation": "NBC regulates broadcasting in Nigeria."
+    },
+    {
+      "text": "What is one major responsibility of NAFDAC?",
+      "options": [
+        "Regulating certain foods, drugs and other regulated products",
+        "Conducting elections",
+        "Managing national parks",
+        "Collecting income taxes"
+      ],
+      "correctIndex": 0,
+      "explanation": "NAFDAC helps ensure regulated products are safe and properly controlled."
+    },
+    {
+      "text": "What is the primary responsibility of the Executive arm of government?",
+      "options": [
+        "Interpreting laws",
+        "Making constitutional amendments",
+        "Implementing and enforcing laws and policies",
+        "Conducting court proceedings"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Executive carries out government policies and laws."
+    },
+    {
+      "text": "Which arm of government is primarily responsible for making laws?",
+      "options": [
+        "Executive",
+        "Judiciary",
+        "Legislative",
+        "Civil Service"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Legislature makes laws."
+    },
+    {
+      "text": "Nigeria has how many levels of government?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "correctIndex": 1,
+      "explanation": "They are Federal, State and Local Governments."
+    },
+    {
+      "text": "Which of the following is a responsibility of a local government?",
+      "options": [
+        "Foreign affairs",
+        "National defence",
+        "Provision of certain local services and infrastructure",
+        "Printing national currency"
+      ],
+      "correctIndex": 2,
+      "explanation": "Local governments handle services close to communities."
+    },
+    {
+      "text": "Which of these is NOT a good reason for choosing a political candidate?",
+      "options": [
+        "Their policies",
+        "Their record",
+        "Their competence",
+        "The amount of money they give you"
+      ],
+      "correctIndex": 3,
+      "explanation": "Candidates should be judged by their competence and record."
     }
   ],
   "intermediary": [
@@ -881,6 +1266,391 @@
       ],
       "correctIndex": 1,
       "explanation": "Courts and election tribunals handle complaints and disputes arising from the electoral process."
+    },
+    {
+      "text": "What does accountability in government primarily mean?",
+      "options": [
+        "Government officials can make decisions without explanation",
+        "Government officials are answerable for their actions and use of public resources",
+        "Citizens must obey every government official",
+        "Government information must always remain secret"
+      ],
+      "correctIndex": 1,
+      "explanation": "Officials must explain and take responsibility for their actions."
+    },
+    {
+      "text": "Which principle means that government power is exercised according to established laws?",
+      "options": [
+        "Rule of law",
+        "Majority rule",
+        "Political patronage",
+        "Federal character"
+      ],
+      "correctIndex": 0,
+      "explanation": "Everyone must operate within the law."
+    },
+    {
+      "text": "Why is citizen participation important in a democracy?",
+      "options": [
+        "It allows citizens to influence government and public decisions",
+        "It eliminates the need for elections",
+        "It gives citizens the power to ignore laws",
+        "It allows only political parties to make decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": "Democracy works better when citizens participate."
+    },
+    {
+      "text": "What does freedom of expression generally allow citizens to do?",
+      "options": [
+        "Say anything without any legal limitations",
+        "Express their opinions within the limits of the law",
+        "Force others to accept their opinions",
+        "Publish confidential government documents without consequences"
+      ],
+      "correctIndex": 1,
+      "explanation": "Freedom of expression is protected but has legal limits."
+    },
+    {
+      "text": "Which right protects a person from being arbitrarily deprived of life?",
+      "options": [
+        "Right to property",
+        "Right to privacy",
+        "Right to life",
+        "Right to movement"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Constitution protects the right to life."
+    },
+    {
+      "text": "Freedom of peaceful assembly means citizens have the right to:",
+      "options": [
+        "Gather peacefully for lawful purposes",
+        "Destroy public property during protests",
+        "Prevent others from attending political meetings",
+        "Carry out violence as part of a protest"
+      ],
+      "correctIndex": 0,
+      "explanation": "Citizens can gather peacefully for lawful purposes."
+    },
+    {
+      "text": "Which of these is NOT a fundamental right?",
+      "options": [
+        "Freedom of religion",
+        "Freedom of expression",
+        "Right to guaranteed government employment",
+        "Right to personal liberty"
+      ],
+      "correctIndex": 2,
+      "explanation": "There is no constitutional right to a government job."
+    },
+    {
+      "text": "Why is the Constitution important to citizens?",
+      "options": [
+        "It provides the framework for government and protects fundamental rights",
+        "It determines the price of every product in Nigeria",
+        "It replaces all government institutions",
+        "It gives political parties unlimited powers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Constitution guides government and protects citizens."
+    },
+    {
+      "text": "If a citizen believes that their fundamental rights have been violated, what should they generally seek?",
+      "options": [
+        "Revenge",
+        "Legal remedy through appropriate institutions or courts",
+        "Violence",
+        "Political appointment"
+      ],
+      "correctIndex": 1,
+      "explanation": "Courts and other lawful institutions can provide remedies."
+    },
+    {
+      "text": "The principle that everyone, including government officials, is subject to the law is known as:",
+      "options": [
+        "Rule of law",
+        "Federal character",
+        "Political neutrality",
+        "Popular sovereignty"
+      ],
+      "correctIndex": 0,
+      "explanation": "Nobody is above the law."
+    },
+    {
+      "text": "What is the main purpose of voter registration?",
+      "options": [
+        "To automatically make someone a political party member",
+        "To establish eligibility and enable qualified citizens to participate in elections",
+        "To guarantee someone a government job",
+        "To determine who will win an election"
+      ],
+      "correctIndex": 1,
+      "explanation": "Registration helps qualified citizens vote."
+    },
+    {
+      "text": "Which of the following is an example of electoral malpractice?",
+      "options": [
+        "Secret voting",
+        "Vote buying",
+        "Voter education",
+        "Peaceful campaigning"
+      ],
+      "correctIndex": 1,
+      "explanation": "Buying votes undermines free elections."
+    },
+    {
+      "text": "Why is the secrecy of the ballot important?",
+      "options": [
+        "It allows voters to vote without revealing their choice",
+        "It prevents people from registering to vote",
+        "It allows political parties to see everyone's vote",
+        "It prevents election observers from working"
+      ],
+      "correctIndex": 0,
+      "explanation": "Secret voting protects voters from pressure."
+    },
+    {
+      "text": "What should a voter do if someone offers them money in exchange for their vote?",
+      "options": [
+        "Accept the money and vote for the person",
+        "Sell their PVC",
+        "Reject it and where appropriate, report the incident",
+        "Vote twice"
+      ],
+      "correctIndex": 2,
+      "explanation": "Vote buying is wrong and undermines elections."
+    },
+    {
+      "text": "Why is voter turnout important?",
+      "options": [
+        "It ensures that more eligible citizens participate in choosing their representatives",
+        "It guarantees that the preferred candidate will win",
+        "It removes the need for political parties",
+        "It makes elections unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "More participation gives citizens a stronger voice."
+    },
+    {
+      "text": "What is one responsible way citizens can hold government accountable?",
+      "options": [
+        "Destroying government offices",
+        "Asking questions and using lawful accountability mechanisms",
+        "Threatening public officials",
+        "Refusing to obey all laws"
+      ],
+      "correctIndex": 1,
+      "explanation": "Citizens can demand answers peacefully and lawfully."
+    },
+    {
+      "text": "A citizen sees a public facility being vandalised. What would be the most responsible action?",
+      "options": [
+        "Join the vandalism",
+        "Ignore it",
+        "Report it to the appropriate authorities",
+        "Record it and encourage others to participate"
+      ],
+      "correctIndex": 2,
+      "explanation": "Reporting helps protect public property."
+    },
+    {
+      "text": "Why is respecting the rights of other citizens important?",
+      "options": [
+        "Democracy depends on peaceful coexistence and respect for others' rights",
+        "It means citizens cannot disagree",
+        "It prevents political competition",
+        "It gives government unlimited power"
+      ],
+      "correctIndex": 0,
+      "explanation": "Democracy requires respect for others."
+    },
+    {
+      "text": "Which action best demonstrates civic responsibility online?",
+      "options": [
+        "Sharing every political claim immediately",
+        "Verifying information before sharing it",
+        "Insulting people with different political views",
+        "Creating false information to support your candidate"
+      ],
+      "correctIndex": 1,
+      "explanation": "Verification helps prevent misinformation."
+    },
+    {
+      "text": "What is constructive political participation?",
+      "options": [
+        "Engaging in peaceful activities that contribute to public decision-making",
+        "Using violence to influence government",
+        "Destroying electoral materials",
+        "Threatening political opponents"
+      ],
+      "correctIndex": 0,
+      "explanation": "Constructive participation is peaceful and useful."
+    },
+    {
+      "text": "Nigeria became a republic in which year?",
+      "options": [
+        "1960",
+        "1963",
+        "1966",
+        "1979"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nigeria became a republic in 1963."
+    },
+    {
+      "text": "Who was Nigeria's first military Head of State?",
+      "options": [
+        "Yakubu Gowon",
+        "Murtala Mohammed",
+        "Johnson Aguiyi-Ironsi",
+        "Ibrahim Babangida"
+      ],
+      "correctIndex": 2,
+      "explanation": "He became Head of State after the 1966 coup."
+    },
+    {
+      "text": "Nigeria experienced a civil war between:",
+      "options": [
+        "19631966",
+        "19671970",
+        "19701973",
+        "19751979"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Nigerian Civil War lasted from 1967 to 1970."
+    },
+    {
+      "text": "What was the secessionist state during the Nigerian Civil War called?",
+      "options": [
+        "Biafra",
+        "Niger Republic",
+        "Eastern Republic",
+        "Igboland"
+      ],
+      "correctIndex": 0,
+      "explanation": "Biafra declared secession from Nigeria in 1967."
+    },
+    {
+      "text": "Nigeria returned to democratic civilian rule in 1999 after years of military rule. Who became President?",
+      "options": [
+        "Ibrahim Babangida",
+        "Sani Abacha",
+        "Olusegun Obasanjo",
+        "Shehu Musa Yar'Adua"
+      ],
+      "correctIndex": 2,
+      "explanation": "Obasanjo became President in 1999."
+    },
+    {
+      "text": "What does the eagle on Nigeria's coat of arms generally symbolise?",
+      "options": [
+        "Strength",
+        "Agriculture",
+        "Rivers",
+        "Democracy"
+      ],
+      "correctIndex": 0,
+      "explanation": "The eagle represents strength."
+    },
+    {
+      "text": "What does the Nigerian coat of arms contain beneath the shield?",
+      "options": [
+        "Two horses and a banner",
+        "Two lions and a crown",
+        "Two eagles and a sword",
+        "Three horses and a flag"
+      ],
+      "correctIndex": 0,
+      "explanation": "Two horses support the shield."
+    },
+    {
+      "text": "Why are national symbols important?",
+      "options": [
+        "They help represent shared national identity and values",
+        "They belong only to government officials",
+        "They replace the Constitution",
+        "They determine election results"
+      ],
+      "correctIndex": 0,
+      "explanation": "Symbols help represent the nation."
+    },
+    {
+      "text": "Which of the following can contribute to Nigerian national identity?",
+      "options": [
+        "Shared history, values, symbols and citizenship",
+        "Only ethnicity",
+        "Only religion",
+        "Only political party membership"
+      ],
+      "correctIndex": 0,
+      "explanation": "These help create a shared national identity."
+    },
+    {
+      "text": "Which institution is responsible for making federal laws in Nigeria?",
+      "options": [
+        "Federal Executive Council",
+        "National Assembly",
+        "Supreme Court",
+        "Council of State"
+      ],
+      "correctIndex": 1,
+      "explanation": "The National Assembly makes federal laws."
+    },
+    {
+      "text": "What is one major responsibility of the EFCC?",
+      "options": [
+        "Conducting national elections",
+        "Investigating and prosecuting certain economic and financial crimes",
+        "Managing universities",
+        "Issuing driver's licences"
+      ],
+      "correctIndex": 1,
+      "explanation": "EFCC fights economic and financial crimes."
+    },
+    {
+      "text": "Which action strengthens democracy?",
+      "options": [
+        "Political violence",
+        "Political apathy",
+        "Peaceful participation and constructive engagement",
+        "Voter intimidation"
+      ],
+      "correctIndex": 2,
+      "explanation": "Democracy grows through peaceful participation."
+    },
+    {
+      "text": "Why should citizens protect public property?",
+      "options": [
+        "Public property belongs collectively to the public and supports community wellbeing",
+        "Only government officials use it",
+        "It belongs to political parties",
+        "It has no value after elections"
+      ],
+      "correctIndex": 0,
+      "explanation": "Public property serves the community."
+    },
+    {
+      "text": "Which institution is primarily responsible for auditing and reporting on the use of public funds by federal government institutions?",
+      "options": [
+        "Office of the Auditor-General for the Federation",
+        "INEC",
+        "Nigeria Police Force",
+        "Federal Executive Council"
+      ],
+      "correctIndex": 0,
+      "explanation": "It audits public funds and reports its findings."
+    },
+    {
+      "text": "A government agency is established to regulate a specific sector of the economy. What is the primary purpose of such a regulatory agency?",
+      "options": [
+        "To replace elected representatives",
+        "To establish and enforce rules and standards within its area of responsibility",
+        "To campaign for political candidates",
+        "To conduct national elections"
+      ],
+      "correctIndex": 1,
+      "explanation": "Regulators set and enforce standards in their sectors."
     }
   ],
   "advance": [
@@ -1455,6 +2225,391 @@
       ],
       "correctIndex": 1,
       "explanation": "PVT independently samples and projects results to detect anomalies and bolster confidence in outcomes."
+    },
+    {
+      "text": "Which of the following best explains the principle of checks and balances in Nigeria's system of government?",
+      "options": [
+        "Each arm of government operates completely independently without interacting with others",
+        "Each arm of government has certain powers that can limit or scrutinise the powers of the others",
+        "The President has authority over all three arms of government",
+        "The Judiciary can make laws whenever the Legislature fails to act"
+      ],
+      "correctIndex": 1,
+      "explanation": "Each arm helps prevent abuse of power by another."
+    },
+    {
+      "text": "A State Governor refuses to implement a law passed by the State House of Assembly simply because the Governor disagrees with it. Which principle of democratic governance is most directly at stake?",
+      "options": [
+        "Rule of law",
+        "Federal character",
+        "Separation of religion and state",
+        "Universal suffrage"
+      ],
+      "correctIndex": 0,
+      "explanation": "Government officials must act according to the law."
+    },
+    {
+      "text": "Which of the following best distinguishes governance from government?",
+      "options": [
+        "Government refers only to elected politicians, while governance refers only to civil servants",
+        "Government refers to the institutions exercising public authority, while governance concerns how power and public affairs are exercised and managed",
+        "Governance exists only during elections, while government exists permanently",
+        "Government is informal, while governance is always constitutional"
+      ],
+      "correctIndex": 1,
+      "explanation": "Government is about institutions; governance is about how power is exercised."
+    },
+    {
+      "text": "A government publishes details of how public funds were spent and allows citizens to scrutinise the expenditure. Which democratic principle is this most closely associated with?",
+      "options": [
+        "Accountability and transparency",
+        "Judicial activism",
+        "Political patronage",
+        "Federal supremacy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Citizens can see and question how public money was used."
+    },
+    {
+      "text": "Why is decentralisation considered important in a federal system such as Nigeria's?",
+      "options": [
+        "It eliminates the authority of the Federal Government",
+        "It allows certain governmental powers and responsibilities to be exercised at different levels closer to citizens",
+        "It gives local governments authority over foreign affairs",
+        "It allows each state to create its own constitution independently"
+      ],
+      "correctIndex": 1,
+      "explanation": "Some decisions can be made closer to the people."
+    },
+    {
+      "text": "Which of the following best explains why fundamental rights are important in a democracy?",
+      "options": [
+        "They give citizens unlimited freedom to do anything they want",
+        "They place legal protections around individuals and limit arbitrary use of state power",
+        "They prevent government from enforcing laws",
+        "They give citizens the right to ignore court decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Rights protect people from abuse of power."
+    },
+    {
+      "text": "A citizen is arrested and detained without lawful justification. Which fundamental right is most directly implicated?",
+      "options": [
+        "Right to freedom of expression",
+        "Right to personal liberty",
+        "Right to freedom of association",
+        "Right to acquire property"
+      ],
+      "correctIndex": 1,
+      "explanation": "People should not be unlawfully detained."
+    },
+    {
+      "text": "Which of the following is the best example of a conflict between two citizens' rights?",
+      "options": [
+        "A citizen paying taxes",
+        "One person's freedom of expression being used in a way that infringes upon another person's rights",
+        "A citizen registering to vote",
+        "A citizen applying for a passport"
+      ],
+      "correctIndex": 1,
+      "explanation": "One person's rights can sometimes affect another person's rights."
+    },
+    {
+      "text": "Chapter II of the 1999 Constitution contains provisions relating primarily to:",
+      "options": [
+        "Fundamental human rights",
+        "Fundamental objectives and directive principles of state policy",
+        "The powers of traditional rulers",
+        "Electoral offences"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chapter II sets out broad goals for the Nigerian state."
+    },
+    {
+      "text": "Which statement best describes the relationship between citizens' rights and responsibilities?",
+      "options": [
+        "Citizens have rights but no responsibilities",
+        "Responsibilities are more important than rights",
+        "Rights enable citizens to participate freely, while responsibilities help sustain an orderly and democratic society",
+        "Citizens lose all their rights when they fail to fulfil a responsibility"
+      ],
+      "correctIndex": 2,
+      "explanation": "Rights and responsibilities work together in a democracy."
+    },
+    {
+      "text": "Why is an independent electoral management body important in a democracy?",
+      "options": [
+        "It allows the electoral body to support the ruling party",
+        "It helps ensure that elections are administered impartially and credibly",
+        "It gives the electoral body the power to choose candidates",
+        "It prevents citizens from challenging election results"
+      ],
+      "correctIndex": 1,
+      "explanation": "Independence helps elections remain fair and credible."
+    },
+    {
+      "text": "During an election, a voter is prevented from voting because of their political preference, despite being otherwise eligible. Which democratic principle is most directly violated?",
+      "options": [
+        "Equal political participation",
+        "Separation of powers",
+        "Fiscal federalism",
+        "Judicial precedent"
+      ],
+      "correctIndex": 0,
+      "explanation": "Eligible voters should be able to participate equally."
+    },
+    {
+      "text": "Why is an election not necessarily considered democratic simply because voting took place?",
+      "options": [
+        "Elections are only democratic when they are held every year",
+        "Democratic elections also require conditions such as genuine competition, voter choice, integrity and credible administration",
+        "Elections are democratic only when the incumbent wins",
+        "Voting is irrelevant to democracy"
+      ],
+      "correctIndex": 1,
+      "explanation": "Democracy requires more than simply casting votes."
+    },
+    {
+      "text": "What is the primary purpose of election observation?",
+      "options": [
+        "To determine which candidate should win",
+        "To monitor the electoral process and provide an independent assessment of its conduct",
+        "To campaign for political parties",
+        "To replace electoral officials"
+      ],
+      "correctIndex": 1,
+      "explanation": "Observers assess how elections are conducted."
+    },
+    {
+      "text": "A candidate loses an election and believes there were serious irregularities. In a constitutional democracy, what is the most appropriate response?",
+      "options": [
+        "Organise violence against the winner",
+        "Reject the entire electoral system",
+        "Use the legally established electoral dispute-resolution process",
+        "Declare themselves the winner"
+      ],
+      "correctIndex": 2,
+      "explanation": "Election disputes should be handled through lawful channels."
+    },
+    {
+      "text": "A citizen strongly disagrees with a government policy. Which action best demonstrates responsible democratic participation?",
+      "options": [
+        "Destroying public property",
+        "Organising a peaceful protest and engaging relevant authorities",
+        "Threatening government officials",
+        "Spreading false information about the policy"
+      ],
+      "correctIndex": 1,
+      "explanation": "Peaceful protest is a lawful way to express disagreement."
+    },
+    {
+      "text": "Why is political accountability not only the responsibility of journalists and civil society organisations?",
+      "options": [
+        "Citizens have no role in governance",
+        "Citizens are stakeholders in democracy and have a role in demanding transparency and responsible government",
+        "Only elected politicians can ask questions about government",
+        "Accountability is exclusively a judicial function"
+      ],
+      "correctIndex": 1,
+      "explanation": "Citizens also have a role in holding the government accountable."
+    },
+    {
+      "text": "A citizen discovers that a viral social media post contains false information about an election. What is the most responsible action?",
+      "options": [
+        "Share it quickly before it is deleted",
+        "Add their own political opinion and share it",
+        "Verify the information and avoid spreading it if it is false",
+        "Create another false story to counter it"
+      ],
+      "correctIndex": 2,
+      "explanation": "Citizens should verify information before sharing it."
+    },
+    {
+      "text": "Which situation best demonstrates political apathy?",
+      "options": [
+        "A citizen criticising a government policy",
+        "A citizen participating in a peaceful protest",
+        "An eligible citizen consistently refusing to participate in civic affairs because they believe their participation cannot make a difference",
+        "A citizen joining a community development association"
+      ],
+      "correctIndex": 2,
+      "explanation": "Political apathy means withdrawing from civic participation."
+    },
+    {
+      "text": "Why should citizens engage with their elected representatives between elections?",
+      "options": [
+        "Representatives only need public input during campaigns",
+        "Continuous engagement helps citizens communicate concerns and monitor how representatives perform their responsibilities",
+        "It guarantees that the representative will provide personal financial assistance",
+        "It allows citizens to replace elected officials immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": "Engagement should continue beyond election day."
+    },
+    {
+      "text": "Which development significantly contributed to Nigeria becoming a federation at independence?",
+      "options": [
+        "The creation of regional structures and the development of federal arrangements",
+        "The abolition of all regional governments",
+        "The introduction of military rule",
+        "The creation of a presidential system in 1960"
+      ],
+      "correctIndex": 0,
+      "explanation": "Regional structures helped shape Nigeria's federal system."
+    },
+    {
+      "text": "Which of the following best describes the significance of the 1954 Lyttleton Constitution in Nigeria's political history?",
+      "options": [
+        "It established Nigeria as a republic",
+        "It introduced a federal system of government with greater regional autonomy",
+        "It ended military rule",
+        "It introduced the current presidential system"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Constitution strengthened regional autonomy."
+    },
+    {
+      "text": "Which event immediately preceded Nigeria's independence in 1960?",
+      "options": [
+        "The Nigerian Civil War",
+        "The transition from colonial rule to self-government and independence",
+        "The establishment of the Fourth Republic",
+        "The first military coup"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nigeria gradually moved from colonial rule to independence."
+    },
+    {
+      "text": "Why is the 1966 military coup considered a significant turning point in Nigerian history?",
+      "options": [
+        "It marked the beginning of Nigeria's independence",
+        "It ended the First Republic and began a prolonged period of military intervention in politics",
+        "It introduced the Fourth Republic",
+        "It ended the Nigerian Civil War"
+      ],
+      "correctIndex": 1,
+      "explanation": "The coup ended the First Republic."
+    },
+    {
+      "text": "Which event is most closely associated with Nigeria's transition to the Fourth Republic?",
+      "options": [
+        "The 1963 Republican Constitution",
+        "The 1975 military coup",
+        "The return to elected civilian government in 1999",
+        "The Nigerian Civil War"
+      ],
+      "correctIndex": 2,
+      "explanation": "Nigeria returned to civilian democratic rule in 1999."
+    },
+    {
+      "text": "Why can national identity be important in a multi-ethnic country such as Nigeria?",
+      "options": [
+        "It requires citizens to abandon their ethnic identities",
+        "It can create a shared sense of belonging that exists alongside ethnic, religious and cultural identities",
+        "It makes cultural diversity unnecessary",
+        "It means everyone must have the same cultural practices"
+      ],
+      "correctIndex": 1,
+      "explanation": "National identity can unite people while allowing diversity."
+    },
+    {
+      "text": "Which statement best reflects the meaning of unity in diversity in the Nigerian context?",
+      "options": [
+        "Nigerians must have identical cultures and beliefs",
+        "Nigeria's different ethnic, cultural and religious groups can maintain their identities while belonging to one nation",
+        "One ethnic group should dominate national life",
+        "Cultural differences should not be recognised"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nigerians can be different and still belong to one nation."
+    },
+    {
+      "text": "A citizen disagrees with another person's ethnic or religious background but respects their rights and treats them equally as a Nigerian. Which civic value is best demonstrated?",
+      "options": [
+        "National integration",
+        "Political patronage",
+        "Ethnic exclusion",
+        "Electoral competition"
+      ],
+      "correctIndex": 0,
+      "explanation": "National integration encourages equal belonging."
+    },
+    {
+      "text": "Why are national symbols such as the flag, coat of arms and national anthem significant beyond their physical appearance?",
+      "options": [
+        "They have legal power to punish citizens",
+        "They represent aspects of Nigeria's history, aspirations, identity and shared values",
+        "They determine political party membership",
+        "They replace citizens' individual identities"
+      ],
+      "correctIndex": 1,
+      "explanation": "Symbols represent important national ideas and values."
+    },
+    {
+      "text": "Which action would best strengthen Nigerian national identity?",
+      "options": [
+        "Promoting hatred against other ethnic groups",
+        "Celebrating cultural diversity while promoting shared citizenship and national values",
+        "Rejecting all cultural differences",
+        "Supporting only people from one's ethnic group"
+      ],
+      "correctIndex": 1,
+      "explanation": "Unity can grow alongside cultural diversity."
+    },
+    {
+      "text": "Which institution has the constitutional responsibility for interpreting the Constitution and deciding cases within its jurisdiction?",
+      "options": [
+        "National Assembly",
+        "Judiciary",
+        "Federal Executive Council",
+        "Civil Service Commission"
+      ],
+      "correctIndex": 1,
+      "explanation": "Courts interpret laws and the Constitution."
+    },
+    {
+      "text": "What is one major distinction between INEC and the National Assembly?",
+      "options": [
+        "INEC makes federal laws while the National Assembly conducts elections",
+        "INEC administers elections while the National Assembly exercises legislative powers",
+        "Both institutions have exactly the same functions",
+        "INEC appoints all members of the National Assembly"
+      ],
+      "correctIndex": 1,
+      "explanation": "INEC manages elections; the National Assembly makes laws."
+    },
+    {
+      "text": "Which institution is primarily responsible for auditing and reporting on the use of public funds by federal government institutions?",
+      "options": [
+        "Office of the Auditor-General for the Federation",
+        "INEC",
+        "Nigeria Police Force",
+        "Federal Executive Council"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Auditor-General checks how public money is used."
+    },
+    {
+      "text": "A citizen wants to understand how a federal ministry used funds allocated to a public programme. Which principle of governance provides the strongest basis for demanding such information?",
+      "options": [
+        "Transparency and accountability",
+        "Diplomatic immunity",
+        "Judicial independence",
+        "Political patronage"
+      ],
+      "correctIndex": 0,
+      "explanation": "Citizens should be able to know how public funds are used."
+    },
+    {
+      "text": "Which instrument is traditionally associated with Nigeria's national anthem?",
+      "options": [
+        "The drum",
+        "The national anthem itself has no designated national instrument",
+        "The talking drum",
+        "The trumpet"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nigeria has no officially designated instrument for the anthem."
     }
   ]
 }

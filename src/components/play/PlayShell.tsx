@@ -122,7 +122,7 @@ export function PlayShell({
           <div className="flex items-center gap-3">
             {session?.user?.username ? (
               <button
-                className="flex items-center gap-2 hover:bg-green/10 p-2 rounded-xl"
+                className="flex items-center gap-2 bg-green/50 hover:bg-green/30 px-3 py-1 rounded-xl"
                 onClick={handleProfileClick}
               >
                 <AvatarBadge avatarId={session.user.avatarId} size="sm" />

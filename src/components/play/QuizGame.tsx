@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { Check, X } from "lucide-react";
+import { Check, X, Home, Pause, Play } from "lucide-react";
 import { PlayShell } from "@/components/play/PlayShell";
 import { TimerRing } from "@/components/play/TimerRing";
 import { ScoreTicker } from "@/components/play/ScoreTicker";
@@ -32,12 +32,14 @@ export function QuizGame({ level }: { level: LevelId }) {
   const [secondsLeft, setSecondsLeft] = useState(TIMER_SECONDS);
   const [phase, setPhase] = useState<Phase>("loading");
   const [error, setError] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
   const [shake, setShake] = useState(false);
   const allowTimeoutRef = useRef(false);
   const answersRef = useRef<PlayerAnswer[]>([]);
   const lockedRef = useRef(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const selectedRef = useRef<number | null>(null);
+  const previousCurrentIdRef = useRef<string | null>(null);
 
   // Sound effects
   const shuffleSound = useRef<HTMLAudioElement | null>(null);
@@ -109,30 +111,30 @@ export function QuizGame({ level }: { level: LevelId }) {
           })
         : Promise.resolve();
 
-      try {
-        const res = await fetch("/api/scores", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ level, answers: finalAnswers }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          setError(data.error ?? "Could not submit score");
-          setPhase("error");
-          return;
-        }
-        sessionStorage.setItem(
-          "civicplay_last_result",
-          JSON.stringify({ level, ...data }),
-        );
-        // Wait for sound to finish before navigating
-        await soundPromise;
-        router.push("/play/results");
-      } catch {
-        setError("Could not submit score");
+    try {
+      const res = await fetch("/api/scores", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ level, answers: finalAnswers }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? "Could not submit score");
         setPhase("error");
+        return;
       }
-    },
+      sessionStorage.setItem(
+        "civicplay_last_result",
+        JSON.stringify({ level, ...data }),
+      );
+      // Wait for sound to finish before navigating
+      await soundPromise;
+      router.push("/play/results");
+    } catch {
+      setError("Could not submit score");
+      setPhase("error");
+    }
+  },
     [clearTimer, level, router],
   );
 
@@ -187,10 +189,13 @@ export function QuizGame({ level }: { level: LevelId }) {
     [clearTimer, current, reduceMotion],
   );
 
-  const startTimer = useCallback(() => {
+  const startTimer = useCallback((reset = true) => {
+    if (isPaused) return; // Don't start timer if paused
     clearTimer();
     allowTimeoutRef.current = false;
-    setSecondsLeft(TIMER_SECONDS);
+    // If resuming from pause, use current secondsLeft; otherwise start fresh
+    const startingSeconds = reset ? TIMER_SECONDS : secondsLeft;
+    setSecondsLeft(startingSeconds);
     timerRef.current = setInterval(() => {
       setSecondsLeft((s) => {
         if (s <= 1) {
@@ -200,7 +205,8 @@ export function QuizGame({ level }: { level: LevelId }) {
         return s - 1;
       });
     }, 1000);
-  }, [clearTimer]);
+  }, [clearTimer, isPaused, secondsLeft]);
+
 
   useEffect(() => {
     if (
@@ -268,15 +274,31 @@ export function QuizGame({ level }: { level: LevelId }) {
     };
   }, [level, status]);
 
+  // Track current question ID to distinguish between fresh starts and resumes
+  useEffect(() => {
+    if (current) {
+      previousCurrentIdRef.current = current.id;
+    }
+  }, [current]);
+
   useEffect(() => {
     if (phase === "answering" && current) {
       lockedRef.current = false;
       setSelected(null);
       selectedRef.current = null;
-      startTimer();
+      if (!isPaused) {
+        // Determine if this is a fresh start or resume from pause
+        const isFreshStart = previousCurrentIdRef.current !== current.id;
+        startTimer(isFreshStart); // Reset if fresh start, don't reset if resuming
+      } else {
+        clearTimer();
+      }
+    } else if (phase !== "answering") {
+      // If we're not in answering phase, make sure timer is cleared
+      clearTimer();
     }
     return () => clearTimer();
-  }, [phase, current?.id, startTimer, clearTimer]);
+  }, [phase, current?.id, startTimer, clearTimer, isPaused, previousCurrentIdRef]);
 
   function handleNext() {
     if (index + 1 >= questions.length) {
@@ -326,6 +348,25 @@ export function QuizGame({ level }: { level: LevelId }) {
       >
         <div className="mb-6 flex items-center justify-between gap-4">
           <TimerRing secondsLeft={secondsLeft} urgent={urgent} />
+
+          <div className="">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => router.push("/play")}
+                className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
+              >
+                <Home />
+              </button>
+              <button
+                onClick={() => {
+                  setIsPaused(!isPaused);
+                }}
+                className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
+              >
+                {isPaused ? <Play size={20} /> : <Pause size={20} />}
+              </button>
+            </div>
+          </div>
           <div className="flex items-center gap-4">
             <AnimatePresence>
               {streak >= 2 ? (
@@ -407,7 +448,7 @@ export function QuizGame({ level }: { level: LevelId }) {
             {phase === "answering" ? (
               <button
                 type="button"
-                disabled={selected === null}
+                disabled={selected === null || isPaused}
                 onClick={() => lockAnswer(selected, false)}
                 className="mt-6 w-full rounded-xl bg-green py-3 font-display text-lg font-bold text-navy-deep hover:bg-green-bright disabled:opacity-40"
               >
