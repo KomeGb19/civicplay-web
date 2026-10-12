@@ -4,6 +4,7 @@ import { LINKS } from "@/lib/chapters";
 import Image from "next/image";
 import { useState } from "react";
 import { BecomePartnerModal } from "./BecomePartnerModal";
+import { Link, Link2 } from "lucide-react";
 
 type MenuOverlayProps = {
   open: boolean;
@@ -24,7 +25,15 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
         aria-label="Site menu"
       >
         <div className="flex items-center justify-between">
-           <Image src="/props/civicplaywhite.png" alt="Civic Play logo" width={40} height={40} className="w-10 h-10"/>
+          <a href="/">
+            <Image
+              src="/props/civicplaywhite.png"
+              alt="Civic Play logo"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+          </a>
           <button
             type="button"
             onClick={onClose}
@@ -35,10 +44,18 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
         </div>
 
         <nav className="mt-16 flex flex-col gap-6 font-[family-name:var(--font-cal)] text-4xl font-extrabold text-[var(--color-cream)] md:text-6xl">
-          <a href={LINKS.play} className="transition hover:rotate-1 hover:scale-101  hover:text-[var(--color-green)]" onClick={onClose}>
+          <a
+            href={LINKS.play}
+            className="transition hover:rotate-1 hover:scale-101  hover:text-[var(--color-green)]"
+            onClick={onClose}
+          >
             Play the game
           </a>
-          <a href="/about" className="transition hover:-rotate-1 hover:scale-101 hover:text-[var(--color-green)]" onClick={onClose}>
+          <a
+            href="/about"
+            className="transition hover:-rotate-1 hover:scale-101 hover:text-[var(--color-green)]"
+            onClick={onClose}
+          >
             About Us
           </a>
           <a
@@ -55,7 +72,11 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
           >
             Become a partner
           </button>
-          <a href="#donate" className="transition hover:-rotate-1 hover:scale-101 text-[var(--color-gold)] hover:text-[var(--color-gold)]" onClick={onClose}>
+          <a
+            href="#donate"
+            className="transition hover:-rotate-1 hover:scale-101 text-[var(--color-gold)] hover:text-[var(--color-gold)]"
+            onClick={onClose}
+          >
             Donate
           </a>
         </nav>

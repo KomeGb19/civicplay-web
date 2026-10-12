@@ -19,7 +19,7 @@ export function Nav({ progress, onOpenMenu }: NavProps) {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8">
       <a
-        href="#top"
+        href="/"
         className="pointer-events-auto flex items-center gap-2.5 transition-opacity hover:opacity-90"
         aria-label="Civic Play home"
       >
