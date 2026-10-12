@@ -33,6 +33,12 @@ export function Nav({ progress, onOpenMenu }: NavProps) {
         >
           Play
         </a>
+        {/* <a
+          href="/about"
+          className="rounded-full bg-[var(--color-navy-deep)] px-5 py-2.5 font-[family-name:var(--font-cal)] text-sm font-bold uppercase tracking-wide text-[var(--color-cream)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] ring-2 ring-[var(--color-green)]/40 transition hover:bg-[var(--color-green)] hover:text-[var(--color-navy-deep)]"
+        >
+          About Us
+        </a> */}
         <button
           type="button"
           onClick={onOpenMenu}

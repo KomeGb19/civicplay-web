@@ -38,6 +38,9 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
           <a href={LINKS.play} className="transition hover:rotate-1 hover:scale-101  hover:text-[var(--color-green)]" onClick={onClose}>
             Play the game
           </a>
+          <a href="/about" className="transition hover:-rotate-1 hover:scale-101 hover:text-[var(--color-green)]" onClick={onClose}>
+            About Us
+          </a>
           <a
             href={LINKS.contactMailto}
             className="transition hover:-rotate-1 hover:scale-101 hover:text-[var(--color-green)]"

@@ -14,8 +14,6 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
 ## Deploy
 
 ```bash
@@ -23,3 +21,5 @@ npm run build
 ```
 
 Deploy the output to Vercel, then point `civicplay.ng` when ready.
+
+# Test line for git add
