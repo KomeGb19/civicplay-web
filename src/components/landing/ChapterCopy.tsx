@@ -14,7 +14,11 @@ type ChapterCopyProps = {
 function opacityForChapter(chapter: Chapter, progress: number) {
   const [start, end] = chapter.range;
   const mid = (start + end) / 2;
-  const fadeIn = Math.min(1, Math.max(0, (progress - start) / 0.04));
+
+  // For the first chapter (hook), make it visible immediately on page load
+  const isFirstChapter = chapter.id === "hook";
+  const fadeInOffset = isFirstChapter ? 0.04 : 0;
+  const fadeIn = Math.min(1, Math.max(0, (progress - start + fadeInOffset) / 0.04));
   const fadeOut = Math.min(1, Math.max(0, (end - progress) / 0.04));
   // Peak at mid of chapter
   const peak =
