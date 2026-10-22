@@ -34,12 +34,9 @@ export function QuizGame({ level }: { level: LevelId }) {
   const [error, setError] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [shake, setShake] = useState(false);
-  const allowTimeoutRef = useRef(false);
   const answersRef = useRef<PlayerAnswer[]>([]);
   const lockedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const selectedRef = useRef<number | null>(null);
-  const previousCurrentIdRef = useRef<string | null>(null);
 
   // Sound effects
   const shuffleSound = useRef<HTMLAudioElement | null>(null);
@@ -56,7 +53,6 @@ export function QuizGame({ level }: { level: LevelId }) {
     timeoutSound.current = new Audio("/sounds/noanswer.wav");
     levelCompleteSound.current = new Audio("/sounds/levelcompleted.wav");
 
-    // Preload sounds
     const sounds = [
       shuffleSound,
       pointSound,
@@ -71,7 +67,6 @@ export function QuizGame({ level }: { level: LevelId }) {
     });
 
     return () => {
-      // Clean up
       sounds.forEach((soundRef) => {
         if (soundRef.current) {
           soundRef.current.pause();
@@ -82,67 +77,59 @@ export function QuizGame({ level }: { level: LevelId }) {
   }, []);
 
   const current = questions[index];
-  const urgent = secondsLeft <= 5 && phase === "answering";
-
-  const clearTimer = useCallback(() => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }, []);
+  const urgent = secondsLeft <= 5 && phase === "answering" && !isPaused;
 
   const finishRound = useCallback(
     async (finalAnswers: PlayerAnswer[]) => {
       setPhase("submitting");
-      clearTimer();
+
       // Play level complete sound
       const sound = levelCompleteSound.current;
       const soundPromise = sound
-        ? new Promise<void>((resolve, _reject) => {
-            sound.play().catch((e) => {
-              console.log("Level complete sound play failed:", e);
-              resolve(); // resolve anyway to avoid hanging
-            });
+        ? new Promise<void>((resolve) => {
             const onEnded = () => {
               sound.removeEventListener("ended", onEnded);
               resolve();
             };
             sound.addEventListener("ended", onEnded);
+            sound.play().catch((e) => {
+              console.log("Level complete sound play failed:", e);
+              resolve(); // resolve anyway to avoid hanging
+            });
           })
         : Promise.resolve();
 
-    try {
-      const res = await fetch("/api/scores", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ level, answers: finalAnswers }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Could not submit score");
+      try {
+        const res = await fetch("/api/scores", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ level, answers: finalAnswers }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setError(data.error ?? "Could not submit score");
+          setPhase("error");
+          return;
+        }
+        sessionStorage.setItem(
+          "civicplay_last_result",
+          JSON.stringify({ level, ...data }),
+        );
+        // Wait for sound to finish before navigating
+        await soundPromise;
+        router.push("/play/results");
+      } catch {
+        setError("Could not submit score");
         setPhase("error");
-        return;
       }
-      sessionStorage.setItem(
-        "civicplay_last_result",
-        JSON.stringify({ level, ...data }),
-      );
-      // Wait for sound to finish before navigating
-      await soundPromise;
-      router.push("/play/results");
-    } catch {
-      setError("Could not submit score");
-      setPhase("error");
-    }
-  },
-    [clearTimer, level, router],
+    },
+    [level, router],
   );
 
   const lockAnswer = useCallback(
     (selectedIndex: number | null, timedOut: boolean) => {
       if (!current || lockedRef.current) return;
       lockedRef.current = true;
-      clearTimer();
 
       const correct =
         !timedOut &&
@@ -151,7 +138,6 @@ export function QuizGame({ level }: { level: LevelId }) {
 
       if (correct) {
         setScore((s) => s + POINTS_PER_CORRECT);
-        // Play point gained sound
         if (pointSound.current) {
           pointSound.current
             .play()
@@ -164,7 +150,6 @@ export function QuizGame({ level }: { level: LevelId }) {
         });
       } else {
         setStreak(0);
-        // Play fail sound
         if (failSound.current) {
           failSound.current
             .play()
@@ -186,46 +171,38 @@ export function QuizGame({ level }: { level: LevelId }) {
       selectedRef.current = selectedIndex;
       setPhase("revealed");
     },
-    [clearTimer, current, reduceMotion],
+    [current, reduceMotion],
   );
 
-  const startTimer = useCallback((reset = true) => {
-    if (isPaused) return; // Don't start timer if paused
-    clearTimer();
-    allowTimeoutRef.current = false;
-    // If resuming from pause, use current secondsLeft; otherwise start fresh
-    const startingSeconds = reset ? TIMER_SECONDS : secondsLeft;
-    setSecondsLeft(startingSeconds);
-    timerRef.current = setInterval(() => {
-      setSecondsLeft((s) => {
-        if (s <= 1) {
-          allowTimeoutRef.current = true;
-          return 0;
-        }
-        return s - 1;
-      });
+  // Countdown: only ticks while answering and not paused.
+  // It does NOT depend on secondsLeft, so it never restarts itself
+  // and never touches the player's selection.
+  useEffect(() => {
+    if (phase !== "answering" || isPaused) return;
+    const id = setInterval(() => {
+      setSecondsLeft((s) => Math.max(0, s - 1));
     }, 1000);
-  }, [clearTimer, isPaused, secondsLeft]);
+    return () => clearInterval(id);
+  }, [phase, isPaused, index]);
 
-
+  // Timeout: when the clock hits zero during an active question
   useEffect(() => {
     if (
       phase === "answering" &&
+      !isPaused &&
       secondsLeft === 0 &&
-      allowTimeoutRef.current &&
       !lockedRef.current
     ) {
-      allowTimeoutRef.current = false;
-      clearTimer();
-      // Play timeout sound
       if (timeoutSound.current) {
         timeoutSound.current
           .play()
           .catch((e) => console.log("Timeout sound play failed:", e));
       }
-      lockAnswer(selectedRef.current, true);
+      // Pass null so the reveal shows "Time's up" even if an option was
+      // picked but never confirmed.
+      lockAnswer(null, true);
     }
-  }, [secondsLeft, phase, clearTimer, lockAnswer]);
+  }, [secondsLeft, phase, isPaused, lockAnswer]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -233,6 +210,7 @@ export function QuizGame({ level }: { level: LevelId }) {
     }
   }, [status, router]);
 
+  // Load questions
   useEffect(() => {
     let cancelled = false;
     async function load() {
@@ -253,7 +231,11 @@ export function QuizGame({ level }: { level: LevelId }) {
           setIndex(0);
           setScore(0);
           setStreak(0);
-          // Play shuffle sound when questions are loaded
+          setSelected(null);
+          selectedRef.current = null;
+          lockedRef.current = false;
+          setIsPaused(false);
+          setSecondsLeft(TIMER_SECONDS);
           if (shuffleSound.current) {
             shuffleSound.current
               .play()
@@ -274,37 +256,17 @@ export function QuizGame({ level }: { level: LevelId }) {
     };
   }, [level, status]);
 
-  // Track current question ID to distinguish between fresh starts and resumes
-  useEffect(() => {
-    if (current) {
-      previousCurrentIdRef.current = current.id;
-    }
-  }, [current]);
-
-  useEffect(() => {
-    if (phase === "answering" && current) {
-      lockedRef.current = false;
-      setSelected(null);
-      selectedRef.current = null;
-      if (!isPaused) {
-        // Determine if this is a fresh start or resume from pause
-        const isFreshStart = previousCurrentIdRef.current !== current.id;
-        startTimer(isFreshStart); // Reset if fresh start, don't reset if resuming
-      } else {
-        clearTimer();
-      }
-    } else if (phase !== "answering") {
-      // If we're not in answering phase, make sure timer is cleared
-      clearTimer();
-    }
-    return () => clearTimer();
-  }, [phase, current?.id, startTimer, clearTimer, isPaused, previousCurrentIdRef]);
-
   function handleNext() {
     if (index + 1 >= questions.length) {
       void finishRound(answersRef.current);
       return;
     }
+    // Reset everything for the next question in the same batch as the phase
+    // change, so the timeout effect never sees a stale 0.
+    lockedRef.current = false;
+    selectedRef.current = null;
+    setSelected(null);
+    setSecondsLeft(TIMER_SECONDS);
     setIndex((i) => i + 1);
     setPhase("answering");
   }
@@ -352,16 +314,17 @@ export function QuizGame({ level }: { level: LevelId }) {
           <div className="">
             <div className="flex items-center gap-2">
               <button
+                type="button"
                 onClick={() => router.push("/play")}
                 className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
               >
                 <Home />
               </button>
               <button
-                onClick={() => {
-                  setIsPaused(!isPaused);
-                }}
-                className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2"
+                type="button"
+                onClick={() => setIsPaused((p) => !p)}
+                disabled={phase !== "answering"}
+                className="flex hover bg-green/10 hover:bg-green/40 rounded-full p-2 gap-2 disabled:opacity-40"
               >
                 {isPaused ? <Play size={20} /> : <Pause size={20} />}
               </button>
@@ -405,12 +368,15 @@ export function QuizGame({ level }: { level: LevelId }) {
                   <motion.button
                     key={`${current.id}-${i}`}
                     type="button"
-                    disabled={revealed || phase === "submitting"}
+                    disabled={revealed || phase === "submitting" || isPaused}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.08 }}
-                    whileTap={revealed ? undefined : { scale: 0.98 }}
+                    whileTap={
+                      revealed || isPaused ? undefined : { scale: 0.98 }
+                    }
                     onClick={() => {
+                      if (isPaused || phase !== "answering") return;
                       setSelected(i);
                       selectedRef.current = i;
                     }}
