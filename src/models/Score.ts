@@ -14,11 +14,13 @@ const ScoreSchema = new Schema(
       index: true,
     },
     score: { type: Number, required: true, min: 0, max: 150 },
+    // Total seconds taken for the round. Null on scores saved before this existed.
+    timeTaken: { type: Number, min: 0, default: null },
   },
   { timestamps: true },
 );
 
-ScoreSchema.index({ level: 1, score: -1, createdAt: 1 });
+ScoreSchema.index({ level: 1, score: -1, timeTaken: 1, createdAt: 1 });
 
 export type ScoreDocument = InferSchemaType<typeof ScoreSchema> & {
   _id: mongoose.Types.ObjectId;
