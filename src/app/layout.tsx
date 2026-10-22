@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { AuthSessionProvider } from "@/components/providers/session-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -89,6 +90,7 @@ export default function RootLayout({
         <AuthSessionProvider>
           <SmoothCursor />
           {children}
+          <Analytics />
         </AuthSessionProvider>
       </body>
     </html>
