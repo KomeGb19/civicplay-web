@@ -6,6 +6,7 @@ import {
   isAvatarId,
   isLevelId,
   MAX_SCORE,
+  TIMER_SECONDS,
   type LevelId,
 } from "@/lib/constants";
 import {
@@ -28,6 +29,8 @@ const submitSchema = z.object({
       timedOut: z.boolean(),
     }),
   ),
+  // Total seconds spent answering the round (client-reported, clamped below)
+  timeTaken: z.number().min(0).optional(),
 });
 
 export async function POST(request: Request) {
@@ -81,6 +84,13 @@ export async function POST(request: Request) {
   const { score, correctCount, streakMax } = scoreAnswers(questions, answers);
   const clamped = Math.min(MAX_SCORE, Math.max(0, score));
 
+  // Time can't be negative or exceed the full allowance for the questions answered
+  const maxTime = answers.length * TIMER_SECONDS;
+  const timeTaken =
+    parsed.data.timeTaken === undefined
+      ? null
+      : Math.min(maxTime, Math.max(0, Math.round(parsed.data.timeTaken)));
+
   const prevBest = bestScores[level] ?? 0;
   const newBest = Math.max(prevBest, clamped);
   user.bestScores = {
@@ -96,12 +106,14 @@ export async function POST(request: Request) {
     avatarId: user.avatarId,
     level,
     score: clamped,
+    timeTaken,
   });
 
   const unlocked = didUnlockNext(level, newBest);
 
   return NextResponse.json({
     score: clamped,
+    timeTaken,
     correctCount,
     streakMax,
     bestScore: newBest,

@@ -12,13 +12,20 @@ import {
   type AvatarId,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Timer } from "lucide-react";
 
 type Entry = {
   username: string;
   score: number;
+  timeTaken: number | null;
   avatarId: AvatarId;
 };
+
+function formatTime(totalSeconds: number): string {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
+}
 
 export function LeaderboardView() {
   const [level, setLevel] = useState<LevelId>("basic");
@@ -50,7 +57,7 @@ export function LeaderboardView() {
           Top civic minds
         </h1>
         <p className="mt-2 text-cream-muted">
-          Best score per player on each level.
+          Best score per player on each level. Ties go to the fastest time.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
@@ -84,7 +91,7 @@ export function LeaderboardView() {
                 key={`${entry.username}-${i}`}
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: Math.min(i, 20) * 0.05 }}
                 className={cn(
                   "flex items-center gap-4 rounded-xl border px-4 py-3",
                   i === 0
@@ -97,9 +104,17 @@ export function LeaderboardView() {
                 </span>
                 <AvatarBadge avatarId={entry.avatarId} size="sm" />
                 <span className="flex-1 font-medium">@{entry.username}</span>
-                <span className="font-display text-xl font-bold text-gold">
-                  {entry.score}
-                </span>
+                <div className="flex items-center gap-3">
+                  {entry.timeTaken !== null ? (
+                    <span className="flex items-center gap-1 text-xs text-cream-muted">
+                      <Timer className="size-3.5" />
+                      {formatTime(entry.timeTaken)}
+                    </span>
+                  ) : null}
+                  <span className="font-display text-xl font-bold text-gold">
+                    {entry.score}
+                  </span>
+                </div>
               </motion.div>
             ))
           )}
