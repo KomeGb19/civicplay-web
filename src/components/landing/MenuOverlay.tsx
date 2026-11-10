@@ -13,8 +13,8 @@ type MenuOverlayProps = {
 };
 
 export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
-  const [showPartnerModal, setShowPartnerModal] = useState(false)
-  const [showDonateModal, setShowDonateModal] = useState(false)
+  const [showPartnerModal, setShowPartnerModal] = useState(false);
+  const [showDonateModal, setShowDonateModal] = useState(false);
 
   return (
     <>
@@ -53,8 +53,15 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
               Play the game
             </a>
             <a
-              href="/about"
+              href="/elections"
               className="transition hover:-rotate-1 hover:scale-101 hover:text-[var(--color-green)]"
+              onClick={onClose}
+            >
+              2027 Elections
+            </a>
+            <a
+              href="/about"
+              className="transition hover:rotate-1 hover:scale-101 hover:text-[var(--color-green)]"
               onClick={onClose}
             >
               About Us
