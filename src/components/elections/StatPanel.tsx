@@ -1,6 +1,6 @@
 import { BarList } from "@/components/elections/BarList";
 import { cardClass } from "@/components/elections/Section";
-import type { Stat } from "@/data/elections";
+import type { Stat } from "@/lib/elections";
 
 export function StatPanel({ stat }: { stat: Stat }) {
   return (
