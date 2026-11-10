@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { Ticket } from "@/data/elections";
+import type { Ticket } from "@/lib/elections";
 
 export function TicketCard({ ticket }: { ticket: Ticket }) {
   const inCourt = ticket.status === "in-court";
