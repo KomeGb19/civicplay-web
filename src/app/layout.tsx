@@ -30,9 +30,9 @@ const calSans = Cal_Sans({
   adjustFontFallback: false,
 });
 
-const siteUrl = process.env.NEXTAUTH_URL || 'https://civicplay.ng';
+const siteUrl = process.env.NEXTAUTH_URL || "https://civicplay.ng";
 // Remove trailing slash if present
-const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+const baseUrl = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
 const metadataBase = new URL(baseUrl);
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "Learn. Compete. Test your civic knowledge. Civic Play is Nigeria’s interactive civic education quiz game for students and citizens.",
   metadataBase,
   icons: {
-    icon: "/props/civicplaywhite.png",
+    icon: "/props/civicplaylogo.png",
   },
   openGraph: {
     title: "Civic Play — Learn Civics. Play to Win.",

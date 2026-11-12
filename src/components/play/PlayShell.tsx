@@ -20,13 +20,15 @@ export function PlayShell({
   const { data: session, update, status } = useSession();
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("isMusicPlaying");
       return saved === null ? true : saved === "true";
     }
     return true;
   });
-  const [selectedAvatarId, setSelectedAvatarId] = useState(session?.user?.avatarId ?? null);
+  const [selectedAvatarId, setSelectedAvatarId] = useState(
+    session?.user?.avatarId ?? null,
+  );
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Persist music state to localStorage whenever it changes
@@ -39,7 +41,7 @@ export function PlayShell({
 
   useEffect(() => {
     if (!clickSoundRef.current) {
-      clickSoundRef.current = new Audio('/sounds/interfaceclick.wav');
+      clickSoundRef.current = new Audio("/sounds/interfaceclick.wav");
       clickSoundRef.current.volume = 0.5; // adjust volume as needed
     }
 
@@ -47,13 +49,13 @@ export function PlayShell({
       const sound = clickSoundRef.current;
       if (sound) {
         sound.currentTime = 0; // restart from beginning
-        sound.play().catch(e => console.log('Click sound play failed:', e));
+        sound.play().catch((e) => console.log("Click sound play failed:", e));
       }
     };
 
-    document.addEventListener('click', handleClick);
+    document.addEventListener("click", handleClick);
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener("click", handleClick);
     };
   }, []); // empty deps to run once
 
@@ -105,7 +107,7 @@ export function PlayShell({
 
         <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
           <Link
-            href="/play"
+            href="/"
             className="font-display text-lg font-bold tracking-tight"
           >
             <Image
