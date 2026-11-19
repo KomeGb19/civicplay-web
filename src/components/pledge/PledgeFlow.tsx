@@ -309,7 +309,7 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
                   onClick={() => setSigning("signing")}
                   className={primary}
                 >
-                  {signing === "signing" ? "Signing…" : "I pledge and sign"}
+                  {signing === "signing" ? "Signing…" : "I Sign"}
                   <PenLine className="size-5" aria-hidden />
                 </button>
               )}
