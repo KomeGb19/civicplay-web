@@ -7,6 +7,7 @@ import { AnimatedSignature } from "@/components/pledge/AnimatedSignature";
 import { AvatarStack } from "@/components/pledge/AvatarStack";
 import { PledgeCard } from "@/components/pledge/PledgeCard";
 import { Stepper } from "@/components/pledge/Stepper";
+import { MIN_PUBLIC_COUNT, recordPledge } from "@/lib/pledge-client";
 import {
   NIGERIAN_STATES,
   PLEDGE_STEPS,
@@ -16,7 +17,12 @@ import {
 
 type Phase = "welcome" | "steps" | "done";
 type Signing = "idle" | "signing" | "signed";
-type Saved = { name: string; state: string; signedAt: string };
+type Saved = {
+  name: string;
+  state: string;
+  signedAt: string;
+  counted?: boolean;
+};
 
 const NAME_RE = /^[\p{L}][\p{L}\p{M}' .-]*$/u;
 
@@ -31,9 +37,26 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
   const [name, setName] = useState("");
   const [state, setState] = useState("");
   const [signing, setSigning] = useState<Signing>("idle");
+  const [total, setTotal] = useState<number | undefined>(pledgeCount);
   const [saved, setSaved] = useState<Saved | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const firstRender = useRef(true);
+
+  const persist = (record: Saved) => {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
+    } catch {
+      /* the card still works for this visit */
+    }
+  };
+
+  // Count this device's pledge once. If it fails, we try again next visit.
+  const countPledge = async (record: Saved) => {
+    const result = await recordPledge(record.state);
+    if (!result) return;
+    setTotal(result.total);
+    persist({ ...record, counted: true });
+  };
 
   // Bring back a pledge already taken on this device
   useEffect(() => {
@@ -42,16 +65,21 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
       if (!raw) return;
       const parsed = JSON.parse(raw) as Partial<Saved>;
       if (parsed.name && parsed.signedAt) {
-        setSaved({
+        const restored: Saved = {
           name: parsed.name,
           state: parsed.state ?? "",
           signedAt: parsed.signedAt,
-        });
+          counted: parsed.counted,
+        };
+        setSaved(restored);
         setPhase("done");
+        // Not counted yet (for example, the network failed last time): retry
+        if (!restored.counted) void countPledge(restored);
       }
     } catch {
       /* storage unavailable: start fresh */
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Move focus to the new heading for keyboard and screen reader users
@@ -69,6 +97,7 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
 
   const current = PLEDGE_STEPS[step];
   const isLast = step === PLEDGE_STEPS.length - 1;
+  const showCount = total !== undefined && total >= MIN_PUBLIC_COUNT;
 
   const goBack = () => {
     if (step === 0) {
@@ -85,13 +114,10 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
       state,
       signedAt: new Date().toISOString(),
     };
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
-    } catch {
-      /* the card still works for this visit */
-    }
+    persist(record);
     setSaved(record);
     setPhase("done");
+    void countPledge(record);
   };
 
   const startOver = () => {
@@ -112,10 +138,8 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
     <div className="mx-auto w-full max-w-xl">
       <style>{`
         @keyframes cp-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        @keyframes cp-pop { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .cp-step { animation: cp-in .4s ease-out both; }
-        .cp-bubble { animation: cp-pop 3s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) { .cp-step, .cp-bubble { animation: none; } }
+        @media (prefers-reduced-motion: reduce) { .cp-step { animation: none; } }
       `}</style>
 
       {phase === "welcome" ? (
@@ -151,8 +175,8 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
               Make my pledge <ArrowRight className="size-5" aria-hidden />
             </button>
             <p className="mt-4 text-sm text-cream-muted">
-              {pledgeCount && pledgeCount > 0
-                ? `${pledgeCount.toLocaleString("en-NG")} Nigerians have pledged. `
+              {showCount
+                ? `${total.toLocaleString("en-NG")} Nigerians have pledged. `
                 : ""}
               Free, no account needed.
             </p>
@@ -239,7 +263,8 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
                     id="pledge-name-help"
                     className="mt-1.5 text-xs text-cream-muted"
                   >
-                    2 to 28 letters. Stays on your device. We don’t store it.
+                    2 to 28 letters. Your name stays on your device. We only
+                    count that you pledged.
                   </p>
                 </div>
 
@@ -257,7 +282,7 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
                     id="pledge-state"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    className="mt-2 w-full rounded-xl border border-cream/20 bg-navy px-4 py-3 text-cream focus:border-gold focus:outline-none "
+                    className="mt-2 w-full rounded-xl border border-cream/20 bg-navy px-4 py-3 text-cream focus:border-gold focus:outline-none"
                   >
                     <option value="">Choose your state</option>
                     {NIGERIAN_STATES.map((s) => (
@@ -336,6 +361,11 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
           <p className="mx-auto mt-3 max-w-md text-cream/90">
             Share your pledge card and ask three friends to join you.
           </p>
+          {showCount ? (
+            <p className="mt-2 text-sm font-semibold text-green">
+              {total.toLocaleString("en-NG")} Nigerians have pledged.
+            </p>
+          ) : null}
 
           <div className="mt-8">
             <PledgeCard

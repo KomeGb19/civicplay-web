@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PledgeShell } from "@/components/pledge/PledgeShell";
 import { PledgeFlow } from "@/components/pledge/PledgeFlow";
+import { MIN_PUBLIC_COUNT } from "@/lib/pledge-client";
+import { getPledgeTotal } from "@/lib/pledge-stats";
 
 export const metadata: Metadata = {
   title: "Take the Pledge: Vote Peacefully in 2027 | Civic Play",
@@ -15,12 +17,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PledgePage() {
+export const revalidate = 60; // seconds
+
+export default async function PledgePage() {
+  const total = await getPledgeTotal();
   return (
     <PledgeShell>
-      {/* Pass a real number here once pledges are counted server-side:
-          <PledgeFlow pledgeCount={12840} /> */}
-      <PledgeFlow />
+      <PledgeFlow
+        pledgeCount={
+          total !== null && total >= MIN_PUBLIC_COUNT ? total : undefined
+        }
+      />
     </PledgeShell>
   );
 }
