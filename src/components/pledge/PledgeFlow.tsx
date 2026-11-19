@@ -248,7 +248,10 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
                     htmlFor="pledge-state"
                     className="text-sm font-semibold text-cream"
                   >
-                    Your state <span className="font-normal text-cream-muted">(optional)</span>
+                    Your state{" "}
+                    <span className="font-normal text-cream-muted">
+                      (optional)
+                    </span>
                   </label>
                   <select
                     id="pledge-state"
@@ -300,7 +303,7 @@ export function PledgeFlow({ pledgeCount }: { pledgeCount?: number }) {
                 </button>
               ) : signing === "signed" ? (
                 <button type="button" onClick={finish} className={primary}>
-                  See my pledge card <ArrowRight className="size-5" aria-hidden />
+                  See my pledge <ArrowRight className="size-5" aria-hidden />
                 </button>
               ) : (
                 <button
