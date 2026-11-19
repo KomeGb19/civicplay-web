@@ -44,7 +44,7 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
             </button>
           </div>
 
-          <nav className="mt-16 flex flex-col gap-6 font-[family-name:var(--font-cal)] text-4xl font-extrabold text-[var(--color-cream)] md:text-6xl">
+          <nav className="mt-16 flex flex-col gap-6 font-[family-name:var(--font-cal)] text-4xl font-extrabold text-[var(--color-cream)] md:text-5xl">
             <a
               href={LINKS.play}
               className="transition hover:rotate-1 hover:scale-101  hover:text-[var(--color-green)]"
@@ -58,6 +58,13 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
               onClick={onClose}
             >
               2027 Elections
+            </a>
+            <a
+              href="/pledge"
+              className="transition hover:-rotate-1 hover:scale-101 hover:text-[var(--color-green)]"
+              onClick={onClose}
+            >
+              Make the pledge
             </a>
             <a
               href="/about"
@@ -93,8 +100,8 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
           </nav>
 
           <div className="mt-auto space-y-2 text-sm text-[var(--color-cream-muted)]">
-            <p>contact@civicplay.ng</p>
-            <p>09130497799 · 08160379312</p>
+            {/* <p>contact@civicplay.ng</p>
+            <p>09130497799 · 08160379312</p> */}
             <p className="pt-4 text-xs">Built by Roundcheck</p>
           </div>
         </div>
