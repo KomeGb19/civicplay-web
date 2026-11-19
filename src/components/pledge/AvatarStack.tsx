@@ -70,7 +70,7 @@ export function AvatarStack({
           <li
             key={a.avatar}
             className={cn(
-              "cp-avatar relative size-14 overflow-hidden rounded-full border-2 border-navy shadow-lg sm:size-16",
+              "cp-avatar relative size-14 overflow-hidden rounded-full border-2 border-navy shadow-lg sm:size-14",
               a.tone,
               i > 0 && "-ml-3",
             )}
@@ -86,7 +86,7 @@ export function AvatarStack({
               src={a.avatar}
               alt=""
               fill
-              sizes="30px"
+              sizes="64"
               priority
               className="object-cover"
             />
